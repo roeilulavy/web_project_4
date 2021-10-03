@@ -1,0 +1,13 @@
+.elements__caption{
+    font-family: 'Inter-Black', Arial, sans-serif;
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 900;
+    text-align: left;
+    color: #000000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 25px 0 31px 21px;
+    padding: 0;
+}
