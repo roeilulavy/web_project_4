@@ -3,6 +3,7 @@
     min-width: 320px;
     display: flex;
     flex-direction: column;
+    border-bottom: solid 1px rgba(54, 54, 54, 0.7);
     margin: 45px 200px 0;
 }
 

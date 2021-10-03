@@ -8,13 +8,20 @@
 /*-- header --*/
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
-@import url(../blocks/header/__horizontal-line/header__horizontal-line.css);
-
 
 /*-- main --*/
 @import url(../blocks/content/content.css);
 
 /*-- profile --*/
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__profile-image/profile__profile-image.css);
+@import url(../blocks/profile/__profile-info/profile__profile-info.css);
+@import url(../blocks/profile/__value-name/profile__value-name.css);
+@import url(../blocks/profile/__value-about/profile__value-about.css);
+@import url(../blocks/profile/__button-edit/profile__button-edit.css);
+@import url(../blocks/profile/__button-edit-icon/profile__button-edit-icon.css);
+@import url(../blocks/profile/__button-add/profile__button-add.css);
+@import url(../blocks/profile/__button-add-icon/profile__button-add-icon.css);
 
 /*-- elements --*/
 
@@ -22,6 +29,6 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
-*{
+/* *{
     border: solid 1px red;
-}
+} */
