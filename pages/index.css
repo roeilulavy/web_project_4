@@ -24,6 +24,13 @@
 @import url(../blocks/profile/__button-add-icon/profile__button-add-icon.css);
 
 /*-- elements --*/
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__element/elements__element.css);
+@import url(../blocks/elements/__image/elements__image.css);
+@import url(../blocks/elements/__holder/elements__holder.css);
+@import url(../blocks/elements/__caption/elements__caption.css);
+@import url(../blocks/elements/__like-button/elements__like-button.css);
+@import url(../blocks/elements/__like-button-icon/elements__like-button-icon.css);
 
 /*-- footer --*/
 @import url(../blocks/footer/footer.css);
