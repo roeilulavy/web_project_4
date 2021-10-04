@@ -13,7 +13,15 @@
     padding: 0;
 }
 
-@media screen and (max-width: 420px){
+@media screen and (max-width: 960px){
+    .profile__button-add{
+        width: 50%;
+        position: relative;
+        margin: 36px 0 0;
+    }
+}
+
+@media screen and (max-width: 450px){
     .profile__button-add{
         width: 100%;
         bottom: 0;

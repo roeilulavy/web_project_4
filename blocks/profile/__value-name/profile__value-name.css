@@ -10,3 +10,13 @@
     margin: 0;
     padding: 0 42px 0 0;
 }
+
+@media screen and (max-width: 450px){
+    .profile__value-name{
+        font-family: 'Inter-Regular', Arial, sans-serif;
+        font-size: 22px;
+        line-height: 27px;
+        text-align: center;
+        padding: 0 28px 0 0;
+    }
+}
