@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
-  <script src="scripts/index.js"></script>
   <title>Around the U.S</title>
 </head>
 
@@ -14,17 +13,80 @@
 
     <header class="header">
       <img class="header__logo" src="images/logo/logo.svg" alt="Around the U.S logo" />
-      <hr class="header__horizontal-line">
     </header>
 
     <main class="content">
 
       <section class="profile">
-
+        <img class="profile__profile-image" src="images/profile/profile.jpg" alt="User profile picture" />
+        <div class="profile__profile-info">
+          <span class="profile__value-name profile__value_type_name">Jacques Cousteau</span>
+          <span class="profile__value-about profile__value_type_about">Explorer</span>
+          <button class="profile__button-edit"></button>
+        </div>
+        <button class="profile__button-add"></button>
       </section>
 
       <section class="elements">
+        <div class="elements__element">
+          <img class="elements__image" src="images/atlanta.jpeg" alt="A photo of Atlanta">
+          <div class="elements__holder">
+            <p class="elements__caption">Atlanta</p>
+            <button class="elements__like-button"></button>
+          </div>
+        </div>
 
+        <div class="elements__element">
+          <img class="elements__image" src="images/brooklyn-bridge.jpeg" alt="A photo of Brooklyn bridge">
+          <div class="elements__holder">
+            <p class="elements__caption">Brooklyn bridge</p>
+            <button class="elements__like-button"></button>
+          </div>
+        </div>
+
+        <div class="elements__element">
+          <img class="elements__image" src="images//california.jpeg" alt="A photo of California">
+          <div class="elements__holder">
+            <p class="elements__caption">California</p>
+            <button class="elements__like-button"></button>
+          </div>
+        </div>
+
+        <div class="elements__element">
+          <img class="elements__image" src="images/chicago.jpeg" alt="A photo of Chicago">
+          <div class="elements__holder">
+            <p class="elements__caption">Chicago</p>
+            <button class="elements__like-button"></button>
+          </div>
+        </div>
+
+        <div class="elements__element">
+          <img class="elements__image" src="images/hollywood.jpeg" alt="A photo of Hollywood">
+          <div class="elements__holder">
+            <p class="elements__caption">Hollywood</p>
+            <button class="elements__like-button"></button>
+          </div>
+        </div>
+
+        <div class="elements__element">
+          <img class="elements__image" src="images/new-york.jpeg" alt="A photo of New-York">
+          <div class="elements__holder">
+            <p class="elements__caption">New-York</p>
+            <button class="elements__like-button"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popup">
+        <div class="popup__content">
+          <button class="popup__close"></button>
+          <form class="popup__form">
+            <h2 class="popup__title">Edit profile</h2>
+            <input type="text" class="popup__input popup__input_type_name" placeholder="Name">
+            <input type="text" class="popup__input popup__input_type_about" placeholder="About me">
+            <button type="submit" class="popup__submit">Save</button>
+          </form>
+        </div>
       </section>
     </main>
 
@@ -33,4 +95,5 @@
     </footer>
   </div>
 </body>
+<script src="scripts/index.js"></script>
 </html>
