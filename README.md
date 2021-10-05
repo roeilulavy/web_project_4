@@ -1,16 +1,26 @@
 # Project 4: Around The U.S.
 
+### In this project we created a semi-social page for showing pictures from the U.S.
+
 ### Overview
 
-* Figma
-* Images
+* The name of the user.
+* Information about the user.
+* A picture of the user.
+* Some pictures of the places in the U.S.
+* An option to edit the user's name and about throu a popup window.
 
-**Figma**
+### Techniques and Technologies used in the project
+* Figma for css fonts, sizes, colors and images.
+* Visual Stusio for code writing.
+* Chrome browser for debuging the site.
+* Windows Crop Tool for compairing the site with Figma layout.
+* Responsive layout to match all devices.
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
 
-**Images**
+**Link to the website**
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
 
-Have fun with JavaScript!
+
+
+Have fun!
