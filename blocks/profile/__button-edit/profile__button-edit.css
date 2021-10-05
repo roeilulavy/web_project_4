@@ -4,9 +4,13 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background: #000000;
-    border: solid 1px white;
     cursor: pointer;
+    background-color: transparent;
+    background-image: url(../../../images/button/edit.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    border: solid 1px white;
     margin: 0;
     padding: 0;
     position: absolute;
