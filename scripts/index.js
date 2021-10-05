@@ -1,13 +1,13 @@
-let profileName = document.querySelector('.profile__value_type_name');
-let profileAbout = document.querySelector('.profile__value_type_about');
+const profileName = document.querySelector('.profile__value_type_name');
+const profileAbout = document.querySelector('.profile__value_type_about');
 
-let profileEditButton = document.querySelector('.profile__button-edit');
+const profileEditButton = document.querySelector('.profile__button-edit');
 
-let popup = document.querySelector('.popup');
-let popupCloseButton = popup.querySelector('.popup__close');
-let popupSubmitButton = popup.querySelector('.popup__submit');
-let popupInputName = popup.querySelector('.popup__input_type_name');
-let popupInputAbout = popup.querySelector('.popup__input_type_about');
+const popup = document.querySelector('.popup');
+const popupCloseButton = popup.querySelector('.popup__close');
+const popupSubmitButton = popup.querySelector('.popup__submit');
+const popupInputName = popup.querySelector('.popup__input_type_name');
+const popupInputAbout = popup.querySelector('.popup__input_type_about');
 
 
 profileEditButton.addEventListener('click', () => {
