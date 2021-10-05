@@ -1,0 +1,22 @@
+.profile__value-name{
+    font-family: 'Inter-medium', Arial, sans-serif;
+    font-size: 42px;
+    line-height: 48px;
+    text-align: left;
+    color: #FFFFFF;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0;
+    padding: 0 42px 0 0;
+}
+
+@media screen and (max-width: 450px){
+    .profile__value-name{
+        font-family: 'Inter-Regular', Arial, sans-serif;
+        font-size: 22px;
+        line-height: 27px;
+        text-align: center;
+        padding: 0 28px 0 0;
+    }
+}
