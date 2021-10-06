@@ -1,5 +1,5 @@
-const profileName = document.querySelector('.profile__value_type-name');
-const profileAbout = document.querySelector('.profile__value_type-about');
+const profileName = document.querySelector('.profile__value-name');
+const profileAbout = document.querySelector('.profile__value-about');
 
 const profileEditButton = document.querySelector('.profile__button-edit');
 
