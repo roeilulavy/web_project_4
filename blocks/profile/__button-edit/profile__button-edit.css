@@ -11,18 +11,16 @@
     background-repeat: no-repeat;
     background-size: auto;
     border: solid 1px white;
-    margin: 0;
+    margin: 8px 0 0 18px;
     padding: 0;
-    position: absolute;
-    right: 0;
-    top: 16px;
+    position: relative;
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 600px){
     .profile__button-edit{
         width: 18px;
         height: 18px;
-        top: 4.5px;
+        margin: 0 0 0 8px;
     }
 }
 
