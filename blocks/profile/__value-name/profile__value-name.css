@@ -1,4 +1,5 @@
 .profile__value-name{
+    max-width: 373px;
     font-family: 'Inter-medium', Arial, sans-serif;
     font-size: 42px;
     line-height: 48px;
@@ -8,15 +9,13 @@
     white-space: nowrap;
     overflow: hidden;
     margin: 0;
-    padding: 0 42px 0 0;
+    padding: 0;
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 600px){
     .profile__value-name{
         font-family: 'Inter-Regular', Arial, sans-serif;
         font-size: 22px;
         line-height: 27px;
-        text-align: center;
-        padding: 0 28px 0 0;
     }
 }

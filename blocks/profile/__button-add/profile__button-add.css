@@ -11,10 +11,7 @@
     background-repeat: no-repeat;
     background-size: auto;
     border: solid 2px white;
-    position: absolute;
-    right: 0;
-    margin: 0;
-    padding: 0;
+    margin-left: auto;
 }
 
 @media screen and (max-width: 960px){
