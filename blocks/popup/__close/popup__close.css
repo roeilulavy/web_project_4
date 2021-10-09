@@ -12,8 +12,8 @@
     background-size: auto;
     border: none;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -40px;
+    right: -40px;
     padding: 0;
     margin: 0;
 }

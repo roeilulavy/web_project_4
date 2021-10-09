@@ -2,9 +2,11 @@
     max-width: 430px;
     min-width: 282px;
     width: 100%;
-    background: transparent;
     position: relative;
-    padding: 40px;
+    padding: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
 @media screen and (max-width: 470px){
