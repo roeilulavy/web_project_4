@@ -11,6 +11,7 @@
     background-repeat: no-repeat;
     background-size: auto;
     border: solid 2px white;
+    border-radius: 2px;
     margin-left: auto;
 }
 
@@ -25,7 +26,6 @@
 @media screen and (max-width: 450px){
     .profile__button-add{
         width: 100%;
-        bottom: 0;
     }
 }
 
