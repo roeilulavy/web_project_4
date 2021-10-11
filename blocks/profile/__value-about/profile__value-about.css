@@ -1,11 +1,15 @@
 .profile__value-about{
-    font-family: 'Inter-regular', Arial, sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 400;
     font-size: 18px;
     line-height: 22px;
     text-align: left;
     color: #FFFFFF;
     margin: 10px 0 0;
     padding: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 600px){
