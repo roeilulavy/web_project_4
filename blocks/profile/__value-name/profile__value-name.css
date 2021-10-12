@@ -20,3 +20,9 @@
         text-align: center;
     }
 }
+
+@media screen and (max-width: 470px){
+    .profile__value-name{
+        justify-content: center;
+    }
+}

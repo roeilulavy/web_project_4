@@ -21,9 +21,3 @@
         margin: 40px auto 0;
     }
 }
-
-@media screen and (max-width: 500px){
-    .profile{
-        margin: 42px 19px 0;
-    }
-}
