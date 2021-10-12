@@ -15,9 +15,14 @@
 
 @media screen and (max-width: 600px){
     .profile__value-name{
-        font-family: 'Inter', Arial, sans-serif;
-        font-weight: 500;
         font-size: 22px;
         line-height: 27px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 470px){
+    .profile__value-name{
+        justify-content: center;
     }
 }
