@@ -1,7 +1,4 @@
 .popup__title{
-    max-width: 330px;
-    min-width: 238px;
-    width: 100%;
     font-family: 'Inter', Arial, sans-serif;
     font-weight: 900;
     font-size: 24px;
@@ -10,7 +7,6 @@
     text-align: left;
     color: #000000;
     padding: 0;
-    align-self: flex-start;
 }
 
 @media screen and (max-width: 520px){
