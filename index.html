@@ -29,55 +29,61 @@
 
       <section class="elements">
         <article class="elements__element">
-          <img class="elements__image" src="images/atlanta.jpeg" alt="A photo of Atlanta">
+          <img class="elements__image" src="https://code.s3.yandex.net/web-code/yosemite.jpg" alt="Yosemite Valley">
+          <button type="button" class="elements__delete-button" name="delete-button"></button>
           <div class="elements__holder">
-            <h2 class="elements__caption">Atlanta</h2>
+            <h2 class="elements__caption">Yosemite Valley</h2>
             <button type="button" class="elements__like-button"></button>
           </div>
         </article>
 
         <article class="elements__element">
-          <img class="elements__image" src="images/brooklyn-bridge.jpeg" alt="A photo of Brooklyn bridge">
+          <img class="elements__image" src="https://code.s3.yandex.net/web-code/lake-louise.jpg" alt="Lake Louise">
+          <button type="button" class="elements__delete-button" name="delete-button"></button>
           <div class="elements__holder">
-            <h2 class="elements__caption">Brooklyn bridge</h2>
+            <h2 class="elements__caption">Lake Louise</h2>
             <button type="button" class="elements__like-button"></button>
           </div>
         </article>
 
         <article class="elements__element">
-          <img class="elements__image" src="images//california.jpeg" alt="A photo of California">
+          <img class="elements__image" src="https://code.s3.yandex.net/web-code/bald-mountains.jpg" alt="Bald Mountains">
+          <button type="button" class="elements__delete-button" name="delete-button"></button>
           <div class="elements__holder">
-            <h2 class="elements__caption">California</h2>
+            <h2 class="elements__caption">Bald Mountains</h2>
             <button type="button" class="elements__like-button"></button>
           </div>
         </article>
 
         <article class="elements__element">
-          <img class="elements__image" src="images/chicago.jpeg" alt="A photo of Chicago">
+          <img class="elements__image" src="https://code.s3.yandex.net/web-code/latemar.jpg" alt="Latemar">
+          <button type="button" class="elements__delete-button" name="delete-button"></button>
           <div class="elements__holder">
-            <h2 class="elements__caption">Chicago</h2>
+            <h2 class="elements__caption">Latemar</h2>
             <button type="button" class="elements__like-button"></button>
           </div>
         </article>
 
         <article class="elements__element">
-          <img class="elements__image" src="images/hollywood.jpeg" alt="A photo of Hollywood">
+          <img class="elements__image" src="https://code.s3.yandex.net/web-code/vanoise.jpg" alt="Vanoise National Park">
+          <button type="button" class="elements__delete-button" name="delete-button"></button>
           <div class="elements__holder">
-            <h2 class="elements__caption">Hollywood</h2>
+            <h2 class="elements__caption">Vanoise National Park</h2>
             <button type="button" class="elements__like-button"></button>
           </div>
         </article>
 
         <article class="elements__element">
-          <img class="elements__image" src="images/new-york.jpeg" alt="A photo of New-York">
+          <img class="elements__image" src="https://code.s3.yandex.net/web-code/lago.jpg" alt="Lago di Braies">
+          <button type="button" class="elements__delete-button" name="delete-button"></button>
           <div class="elements__holder">
-            <h2 class="elements__caption">New-York</h2>
+            <h2 class="elements__caption">Lago di Braies</h2>
             <button type="button" class="elements__like-button"></button>
           </div>
         </article>
       </section>
 
-      <section class="popup">
+      <div class="popup">
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
           <h2 class="popup__title">Edit profile</h2>
@@ -87,14 +93,46 @@
             <button type="submit" class="popup__submit">Save</button>
           </form>
         </div>
-      </section>
+      </div>
+
+      <div class="popup card-popup">
+        <div class="popup__content">
+          <button type="button" class="popup__close"></button>
+          <h2 class="popup__title">New Place</h2>
+          <form class="popup__form" name="new-card_info">
+            <input type="text" class="popup__input popup__input_type_card-title" placeholder="Title">
+            <input type="text" class="popup__input popup__input_type_card-url" placeholder="Image URL">
+            <button type="submit" class="popup__submit">Save</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup image-popup">
+        <div class="popup__content-wrapper">
+          <button type="button" class="popup__close"></button>
+          <img class="popup__image" src="https://code.s3.yandex.net/web-code/lake-louise.jpg" alt="Lake Louise">
+          <figure class="popup__figure">Lake Louise</figure>
+        </div>
+      </div>
     </main>
 
     <footer class="footer">
       <p class="footer__copyright">© 2021. Royal prod.</p>
     </footer>
   </div>
+
+  <template id="template">
+    <article class="elements__element">
+      <img class="elements__image" src="#" alt="image">
+      <button type="button" class="elements__delete-button" name="delete-button"></button>
+      <div class="elements__holder">
+        <h2 class="elements__caption"></h2>
+        <button type="button" class="elements__like-button"></button>
+      </div>
+    </article>
+  </template>
+
+  <script src="scripts/initial-cards.js"></script>
   <script src="scripts/index.js"></script>
 </body>
-
 </html>
