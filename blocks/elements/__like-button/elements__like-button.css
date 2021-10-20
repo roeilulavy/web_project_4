@@ -13,6 +13,7 @@
     margin: 0;
     padding: 0;
     border: none;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .elements__like-button:hover{

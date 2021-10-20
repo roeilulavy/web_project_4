@@ -1,34 +1,33 @@
-const profileName = document.querySelector('.profile__value-name');
-const profileAbout = document.querySelector('.profile__value-about');
+// Wrappers
+const popupWindow = document.querySelector('.popup');
+const editForm = document.querySelector('.popup__form');
 
-const profileEditButton = document.querySelector('.profile__button-edit');
+// Buttons and other DOM elements
+const profileEditButton = document.querySelector('.profile__edit-button');
+const popupCloseButton = document.querySelector('.popup__close');
+const profileTitle = document.querySelector('.profile__title');
+const profileDescription = document.querySelector('.profile__description');
 
-const popup = document.querySelector('.popup');
-const popupForm = popup.querySelector('.popup__form');
-const popupCloseButton = popup.querySelector('.popup__close');
-const popupSubmitButton = popupForm.querySelector('.popup__submit');
-const popupInputName = popupForm.querySelector('.popup__input_type_name');
-const popupInputAbout = popupForm.querySelector('.popup__input_type_about');
+//Form data
+const titleInputValue = editForm.querySelector('.popup__input_type_name');
+const descriptionInputValue = editForm.querySelector('.popup__input_type_description');
 
-function openPopup() {
-    popupInputName.value = profileName.textContent;
-    popupInputAbout.value = profileAbout.textContent;
-    popup.classList.add('popup_is-open');
+function togglePopupWindow() {
+  if (!popupWindow.classList.contains('popup_is')) {
+    titleInputValue.value = profileTitle.textContent;
+    descriptionInputValue.value = profileDescription.textContent;
+  }
+  popupWindow.classList.toggle('popup_is-open');
 }
 
-function closePopup() {
-    popup.classList.remove('popup_is-open');
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  profileTitle.textContent = titleInputValue.value;
+  profileDescription.textContent = descriptionInputValue.value;
+  togglePopupWindow();
 }
 
-function saveUserInfo(event) {
-    event.preventDefault();
-    profileName.textContent = popupInputName.value;
-    profileAbout.textContent = popupInputAbout.value;
-    closePopup();
-}
+editForm.addEventListener('submit', formSubmitHandler);
 
-profileEditButton.addEventListener('click', openPopup);
-
-popupCloseButton.addEventListener('click', closePopup);
-
-popupForm.addEventListener('submit', saveUserInfo);
+profileEditButton.addEventListener('click', togglePopupWindow);
+popupCloseButton.addEventListener('click', togglePopupWindow);

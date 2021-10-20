@@ -1,4 +1,4 @@
-.profile__value-name{
+.profile__title{
     max-width: 373px;
     font-family: 'Inter', Arial, sans-serif;
     font-weight: 500;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 600px){
-    .profile__value-name{
+    .profile__title{
         font-size: 22px;
         line-height: 27px;
         text-align: center;
@@ -22,7 +22,7 @@
 }
 
 @media screen and (max-width: 470px){
-    .profile__value-name{
+    .profile__title{
         justify-content: center;
     }
 }
