@@ -24,66 +24,12 @@
           <button type="button" class="profile__edit-button"></button>
           <p class="profile__description">Explorer</p>
         </div>
-        <button type="button" class="profile__button-add"></button>
+        <button type="button" class="profile__add-button"></button>
       </section>
 
-      <section class="elements">
-        <article class="elements__element">
-          <img class="elements__image" src="https://code.s3.yandex.net/web-code/yosemite.jpg" alt="Yosemite Valley">
-          <button type="button" class="elements__delete-button" name="delete-button"></button>
-          <div class="elements__holder">
-            <h2 class="elements__caption">Yosemite Valley</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </article>
+      <section class="elements"></section>
 
-        <article class="elements__element">
-          <img class="elements__image" src="https://code.s3.yandex.net/web-code/lake-louise.jpg" alt="Lake Louise">
-          <button type="button" class="elements__delete-button" name="delete-button"></button>
-          <div class="elements__holder">
-            <h2 class="elements__caption">Lake Louise</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </article>
-
-        <article class="elements__element">
-          <img class="elements__image" src="https://code.s3.yandex.net/web-code/bald-mountains.jpg" alt="Bald Mountains">
-          <button type="button" class="elements__delete-button" name="delete-button"></button>
-          <div class="elements__holder">
-            <h2 class="elements__caption">Bald Mountains</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </article>
-
-        <article class="elements__element">
-          <img class="elements__image" src="https://code.s3.yandex.net/web-code/latemar.jpg" alt="Latemar">
-          <button type="button" class="elements__delete-button" name="delete-button"></button>
-          <div class="elements__holder">
-            <h2 class="elements__caption">Latemar</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </article>
-
-        <article class="elements__element">
-          <img class="elements__image" src="https://code.s3.yandex.net/web-code/vanoise.jpg" alt="Vanoise National Park">
-          <button type="button" class="elements__delete-button" name="delete-button"></button>
-          <div class="elements__holder">
-            <h2 class="elements__caption">Vanoise National Park</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </article>
-
-        <article class="elements__element">
-          <img class="elements__image" src="https://code.s3.yandex.net/web-code/lago.jpg" alt="Lago di Braies">
-          <button type="button" class="elements__delete-button" name="delete-button"></button>
-          <div class="elements__holder">
-            <h2 class="elements__caption">Lago di Braies</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </article>
-      </section>
-
-      <div class="popup">
+      <div class="popup popup_type_edit-profile">
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">Edit profile</h3>
@@ -95,23 +41,23 @@
         </div>
       </div>
 
-      <div class="popup card-popup">
+      <div class="popup popup_type_add-card">
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">New Place</h3>
-          <form class="popup__form" name="new-card_info">
-            <input type="text" name="card-name" class="popup__input popup__input_type_card-title" placeholder="Title">
-            <input type="text" name="card-link" class="popup__input popup__input_type_card-url" placeholder="Image URL">
-            <button type="submit" class="popup__submit">Save</button>
+          <form class="popup__form popup__form_type_add-card" name="new-card_info">
+            <input type="text" name="card-name" class="popup__input popup__input_type_card-name" placeholder="Title">
+            <input type="text" name="card-link" class="popup__input popup__input_type_card-link" placeholder="Image link">
+            <button type="submit" class="popup__submit">Create</button>
           </form>
         </div>
       </div>
 
-      <div class="popup image-popup">
+      <div class="popup popup_type_image-preview">
         <div class="popup__content-wrapper">
           <button type="button" class="popup__close"></button>
-          <img class="popup__image" src="https://code.s3.yandex.net/web-code/lake-louise.jpg" alt="Lake Louise">
-          <figure class="popup__figure">Lake Louise</figure>
+          <img class="popup__image" src="" alt="">
+          <figure class="popup__figure"></figure>
         </div>
       </div>
     </main>
@@ -121,9 +67,9 @@
     </footer>
   </div>
 
-  <template id="template">
+  <template id="element-template">
     <article class="elements__element">
-      <img class="elements__image" src="#" alt="image">
+      <img class="elements__image" src="" alt="">
       <button type="button" class="elements__delete-button" name="delete-button"></button>
       <div class="elements__holder">
         <h2 class="elements__caption"></h2>
@@ -132,7 +78,6 @@
     </article>
   </template>
 
-  <script src="scripts/initial-cards.js"></script>
   <script src="scripts/index.js"></script>
 </body>
 </html>
