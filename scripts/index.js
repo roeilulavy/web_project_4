@@ -44,10 +44,28 @@ const elementTemplate = document.querySelector('#element-template').content.quer
 // Open and Close popup
 function showPopup(popup) {
   popup.classList.add(`popup_is-open`);
+  document.addEventListener('keydown',closePopupWithEscKey);
+  document.addEventListener('mousedown',closePopupByClickOutsideThePopup);
 }
 
 function closePopup(popup) {
   popup.classList.remove(`popup_is-open`);
+  document.removeEventListener('keydown',  closePopupWithEscKey);
+  document.removeEventListener('mousedown',closePopupByClickOutsideThePopup);
+  resetPopupAndPopupValidation(pageSettings);
+  toggleCardFormBtn();
+}
+
+function closePopupWithEscKey(evt){
+  if (evt.key === "Escape"){
+      closePopup(document.querySelector('.popup_is-open'));
+  }
+}
+
+function closePopupByClickOutsideThePopup (evt){
+  if (evt.target.classList.contains(`popup_is-open`)){
+      closePopup(evt.target);
+  }
 }
 
 //Form data
@@ -91,7 +109,7 @@ function elementSubmitHandler(evt) {
   });
   placesElements.prepend(addElement);
   closePopup(popupAddCard);
-  elementForm.reset();
+  toggleCardFormBtn();
 }
 
 elementForm.addEventListener('submit', elementSubmitHandler);
@@ -111,6 +129,7 @@ profileEditButton.addEventListener('click', () => {
   showPopup(popupEditProfile);
   titleInputValue.value = profileTitle.textContent;
   descriptionInputValue.value = profileDescription.textContent;
+  enableValidation(pageSettings);
 });
 
 closeButton.forEach(btn => btn.addEventListener('click', () => {
@@ -120,4 +139,9 @@ closeButton.forEach(btn => btn.addEventListener('click', () => {
 
 initialCards.forEach(initialCardData => {
   placesElements.prepend(createCardElement(initialCardData));
-})
+});
+
+function toggleCardFormBtn(){
+  const submitButton = popupAddCard.querySelector('.popup__submit');
+  submitButton.classList.add(pageSettings.inactiveButtonClass);
+};
