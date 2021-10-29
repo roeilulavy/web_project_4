@@ -34,9 +34,11 @@
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">Edit profile</h3>
           <form class="popup__form" name="user_info">
-            <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Name">
-            <input type="text" name="description" class="popup__input popup__input_type_description" placeholder="About me">
-            <button type="submit" class="popup__submit">Save</button>
+            <input id="input_type_name" type="text" name="name" class="popup__input popup__input_type_name" placeholder="Name" minlength="2" maxlength="40" required>
+            <span id="input_type_name-error" class="popup__error"></span>
+            <input id="input_type_description" type="text" name="description" class="popup__input popup__input_type_description" placeholder="About me" minlength="2" maxlength="200" required>
+            <span id="input_type_description-error" class="popup__error"></span>
+            <button type="submit" class="popup__submit popup__submit_type_disable">Save</button>
           </form>
         </div>
       </div>
@@ -46,9 +48,11 @@
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">New Place</h3>
           <form class="popup__form popup__form_type_add-card" name="new-card_info">
-            <input type="text" name="card-name" class="popup__input popup__input_type_card-name" placeholder="Title">
-            <input type="text" name="card-link" class="popup__input popup__input_type_card-link" placeholder="Image link">
-            <button type="submit" class="popup__submit">Create</button>
+            <input id="input_type_title" type="text" name="card-name" class="popup__input popup__input_type_card-name" placeholder="Title" minlength="1" maxlength="30" required>
+            <span id="input_type_title-error" class="popup__error popup__error_visible"></span>
+            <input id="input_type_url" type="url" name="card-link" class="popup__input popup__input_type_card-link" placeholder="Image link" required>
+            <span id="input_type_url-error" class="popup__error"></span>
+            <button type="submit" class="popup__submit popup__submit_type_disable">Create</button>
           </form>
         </div>
       </div>
@@ -78,6 +82,7 @@
     </article>
   </template>
 
+  <script src="scripts/validate.js"></script>
   <script src="scripts/index.js"></script>
 </body>
 </html>
