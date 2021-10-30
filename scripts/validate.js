@@ -78,10 +78,10 @@ function enableValidation(pageSettings) {
 enableValidation(pageSettings);
 
 // Reset
-function resetPopup (pageSettings){
-    const popupList = document.querySelectorAll(pageSettings.formSelector);
-    const inputList = document.querySelectorAll(pageSettings.inputSelector);
+function resetPopup(popup) {
+    const popupList = popup.querySelector(pageSettings.formSelector);
+    const inputList = popup.querySelectorAll(pageSettings.inputSelector);
 
-    [...popupList].forEach((popup) => popup.reset());
+    popupList.reset();
     [...inputList].forEach((inputElement) => hideInputError(inputElement.closest(pageSettings.formSelector), inputElement, pageSettings));
 }
