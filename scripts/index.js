@@ -20,6 +20,7 @@ function showPopup(popup) {
   popup.classList.add(`popup_is-open`);
   document.addEventListener('keydown',closePopupWithEscKey);
   document.addEventListener('mousedown',closePopupByClickOutsideThePopup);
+  enableValidation(pageSettings);
 }
 
 function closePopup(popup) {
@@ -102,7 +103,6 @@ profileEditButton.addEventListener('click', () => {
   showPopup(popupEditProfile);
   titleInputValue.value = profileTitle.textContent;
   descriptionInputValue.value = profileDescription.textContent;
-  enableValidation(pageSettings);
 });
 
 closeButton.forEach(btn => btn.addEventListener('click', () => {

@@ -75,8 +75,6 @@ function enableValidation(pageSettings) {
     });
 }
 
-enableValidation(pageSettings);
-
 // Reset
 function resetPopup(popup) {
     const popupList = popup.querySelector(pageSettings.formSelector);
