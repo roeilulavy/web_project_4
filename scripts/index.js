@@ -26,7 +26,7 @@ function closePopup(popup) {
   popup.classList.remove(`popup_is-open`);
   document.removeEventListener('keydown',  closePopupWithEscKey);
   document.removeEventListener('mousedown',closePopupByClickOutsideThePopup);
-  resetPopupAndPopupValidation(pageSettings);
+  resetPopup(pageSettings);
   toggleCardFormBtn();
 }
 

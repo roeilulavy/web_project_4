@@ -78,7 +78,7 @@ function enableValidation(pageSettings) {
 enableValidation(pageSettings);
 
 // Reset
-function resetPopupAndPopupValidation (pageSettings){
+function resetPopup (pageSettings){
     const popupList = document.querySelectorAll(pageSettings.formSelector);
     const inputList = document.querySelectorAll(pageSettings.inputSelector);
 
