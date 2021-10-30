@@ -83,7 +83,6 @@ function elementSubmitHandler(evt) {
   });
   placesElements.prepend(addElement);
   closePopup(popupAddCard);
-  toggleCardFormBtn();
 }
 
 elementForm.addEventListener('submit', elementSubmitHandler);
