@@ -28,7 +28,6 @@ function hideInputError(formElement, inputElement, pageSettings) {
 function checkInputValidity(formElement, inputElement, pageSettings) {
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage, pageSettings);
-        console.log("Error");
     } else {
         hideInputError(formElement, inputElement, pageSettings);
     }
@@ -53,25 +52,28 @@ function toggleButtonState(inputList, buttonElement, pageSettings) {
 function setEventListeners(formElement, pageSettings) {
     const inputList = Array.from(formElement.querySelectorAll(pageSettings.inputSelector));
     const buttonElement = formElement.querySelector(pageSettings.submitButtonSelector);
-
-    toggleButtonState(inputList, buttonElement, pageSettings);  
+    
     inputList.forEach((inputElement) => {
         inputElement.addEventListener("input", () => {
             checkInputValidity(formElement, inputElement, pageSettings);
             toggleButtonState(inputList, buttonElement, pageSettings);
-        })
-    })
+        });
+    });
 }
 
 // Enable the validation
 function enableValidation(pageSettings) {
     const formList = Array.from(document.querySelectorAll(pageSettings.formSelector));
+    const inputList = Array.from(document.querySelectorAll(pageSettings.inputElement));
+    const buttonElement = document.querySelector(pageSettings.submitButtonSelector);
+
+    toggleButtonState(inputList, buttonElement, pageSettings);
     
     formList.forEach((formElement) => {
         formElement.addEventListener("submit", (evt) => {
             evt.preventDefault();
         });
-        setEventListeners(formElement, pageSettings)
+        setEventListeners(formElement, pageSettings);
     });
 }
 
@@ -79,7 +81,9 @@ function enableValidation(pageSettings) {
 function resetPopup(popup) {
     const popupList = popup.querySelector(pageSettings.formSelector);
     const inputList = popup.querySelectorAll(pageSettings.inputSelector);
+    const buttonList = popup.querySelector(pageSettings.submitButtonSelector);
 
     popupList.reset();
     [...inputList].forEach((inputElement) => hideInputError(inputElement.closest(pageSettings.formSelector), inputElement, pageSettings));
+    buttonList.classList.add(pageSettings.inactiveButtonClass);
 }

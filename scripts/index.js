@@ -28,7 +28,6 @@ function closePopup(popup) {
   document.removeEventListener('keydown',  closePopupWithEscKey);
   document.removeEventListener('mousedown',closePopupByClickOutsideThePopup);
   resetPopup(popup);
-  toggleCardFormBtn();
 }
 
 function closePopupWithEscKey(evt){
@@ -113,8 +112,3 @@ closeButton.forEach(btn => btn.addEventListener('click', () => {
 initialCards.forEach(initialCardData => {
   placesElements.prepend(createCardElement(initialCardData));
 });
-
-function toggleCardFormBtn(){
-  const submitButton = popupAddCard.querySelector('.popup__submit');
-  submitButton.classList.add(pageSettings.inactiveButtonClass);
-};
