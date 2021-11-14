@@ -7,7 +7,7 @@ export default class Card {
         this._template = document.querySelector(cardTemplateSelector).content.querySelector('.elements__element');
     }
 
-    _handleLikeIcon() {
+    _handleLikeIcon(evt) {
         evt.target.classList.toggle(`elements__like-button_active`);
     }
 
