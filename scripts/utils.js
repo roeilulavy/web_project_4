@@ -1,7 +1,20 @@
+import {editProfileData, formSelector, formSettings} from "./index.js";
+
+const profileEditButton = document.querySelector('.profile__edit-button');
+const profileAddButton = document.querySelector('.profile__add-button');
+const closeButton = document.querySelectorAll('.popup__close');
+
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
-const popupImagePreview = document.querySelector('.popup_type_image-preview');
 
+profileEditButton.addEventListener('click', () => {
+    showPopup(popupEditProfile);
+    editProfileData();
+});
+
+profileAddButton.addEventListener('click', () => {
+    showPopup(popupAddCard);
+});
 
 const closePopupWithEscKey = (evt) => {
     if (evt.key === "Escape"){
@@ -15,15 +28,16 @@ const closePopupByClickOutsideThePopup = (evt) => {
     }
 };
 
-const resetPopup = (popup) => {
-    const popupList = popup.querySelector(formSelector);
-    const inputList = popup.querySelectorAll(formSettings.inputSelector);
-    const buttonList = popup.querySelector(formSettings.submitButtonSelector);
+// const resetPopup = (popup) => {
+//     const popupList = popup.querySelector(formSelector);
+//     const inputList = popup.querySelectorAll(formSettings.inputSelector);
+//     const buttonList = popup.querySelector(formSettings.submitButtonSelector);
 
-    popupList.reset();
-    [...inputList].forEach((inputElement) => hideInputError(inputElement.closest(formSelector), inputElement, formSettings));
-    buttonList.classList.add(formSettings.inactiveButtonClass);
-};
+//     popupList.reset();
+
+//     [...inputList].forEach((inputElement) => hideError(inputElement.closest(formSelector), inputElement, formSettings));
+//     buttonList.classList.add(formSettings.inactiveButtonClass);
+// };
 
 export function showPopup(popup) {
     popup.classList.add(`popup_is-open`);
@@ -31,9 +45,14 @@ export function showPopup(popup) {
     document.addEventListener('mousedown',closePopupByClickOutsideThePopup);
 };
 
-const closePopup = (popup) => {
+export function closePopup(popup) {
     popup.classList.remove(`popup_is-open`);
     document.removeEventListener('keydown',  closePopupWithEscKey);
     document.removeEventListener('mousedown',closePopupByClickOutsideThePopup);
-    resetPopup(popup);
+    // resetPopup(popup);
 };
+
+closeButton.forEach(btn => btn.addEventListener('click', () => {
+    const popup = btn.closest('.popup');
+    closePopup(popup);
+  }));

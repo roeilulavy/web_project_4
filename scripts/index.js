@@ -33,16 +33,10 @@ const editForm = document.querySelector('.popup__form');
 const elementForm = document.querySelector('.popup__form_type_add-card');
 const placesElements = document.querySelector('.elements');
 const cardTemplateSelector = '#element-template';
-console.log(cardTemplateSelector);
 
 // Buttons and other DOM elements
-const profileEditButton = document.querySelector('.profile__edit-button');
-const profileAddButton = document.querySelector('.profile__add-button');
-const closeButton = document.querySelectorAll('.popup__close');
-
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
-
 
 //Form data
 const titleInputValue = editForm.querySelector('.popup__input_type_name');
@@ -73,27 +67,12 @@ function formSubmitHandler(evt) {
 
 editForm.addEventListener('submit', formSubmitHandler);
 
-profileAddButton.addEventListener('click', function() { showPopup(popupAddCard) });
-
-profileEditButton.addEventListener('click', () => { 
-  showPopup(popupEditProfile);
+export function editProfileData() {
   titleInputValue.value = profileTitle.textContent;
   descriptionInputValue.value = profileDescription.textContent;
-});
-
-closeButton.forEach(btn => btn.addEventListener('click', () => {
-  const popup = btn.closest('.popup');
-  closePopup(popup);
-}));
+}
 
 //-----------//
-
-initialCards.forEach((cardData) => {
-  const card = new Card(cardData, cardTemplateSelector);
-
-  placesElements.prepend(card.render());
-});
-
 const formSelector = '.popup__form';
 const formSettings = {
   inputSelector: '.popup__input',
@@ -103,9 +82,17 @@ const formSettings = {
   errorClass: 'popup__error_visible'
 }
 
+initialCards.forEach((cardData) => {
+  const card = new Card(cardData, cardTemplateSelector);
+
+  placesElements.prepend(card.render());
+});
+
 const getFormList = Array.from(document.querySelectorAll(formSelector));
 getFormList.forEach((formElement) => {
   const formValidator = new FormValidator(formSettings, formElement);
 
   formValidator.enableValidation();
 });
+
+export {formSelector, formSettings};
