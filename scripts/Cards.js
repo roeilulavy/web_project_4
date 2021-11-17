@@ -34,7 +34,7 @@ export default class Card {
         this._element.querySelector('.elements__caption').textContent = this._name;
 
         likeButton.addEventListener('click', this._handleLikeIcon);
-        deleteButton.addEventListener('click', this._handleDeleteCard);
+        deleteButton.addEventListener('click', () => this._handleDeleteCard());
         cardImage.addEventListener('click', () => this._handlePreviewPicture());
     }
 
