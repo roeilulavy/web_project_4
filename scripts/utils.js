@@ -1,20 +1,27 @@
-import {editProfileData, formSelector, formSettings} from "./index.js";
+import {profileData as getProfileData, formSettings, popupEditProfile, popupAddCard} from "./index.js";
+import FormValidator from "./FormValidator.js";
 
+// Buttons
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 const closeButton = document.querySelectorAll('.popup__close');
 
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const popupAddCard = document.querySelector('.popup_type_add-card');
+// Popups
+const popupImagePreview = document.querySelector('.popup_type_image-preview');
 
 profileEditButton.addEventListener('click', () => {
     showPopup(popupEditProfile);
-    editProfileData();
+    getProfileData();
 });
 
 profileAddButton.addEventListener('click', () => {
     showPopup(popupAddCard);
 });
+
+closeButton.forEach(btn => btn.addEventListener('click', () => {
+    const popup = btn.closest('.popup');
+    closePopup(popup);
+}));
 
 const closePopupWithEscKey = (evt) => {
     if (evt.key === "Escape"){
@@ -28,17 +35,6 @@ const closePopupByClickOutsideThePopup = (evt) => {
     }
 };
 
-// const resetPopup = (popup) => {
-//     const popupList = popup.querySelector(formSelector);
-//     const inputList = popup.querySelectorAll(formSettings.inputSelector);
-//     const buttonList = popup.querySelector(formSettings.submitButtonSelector);
-
-//     popupList.reset();
-
-//     [...inputList].forEach((inputElement) => hideError(inputElement.closest(formSelector), inputElement, formSettings));
-//     buttonList.classList.add(formSettings.inactiveButtonClass);
-// };
-
 export function showPopup(popup) {
     popup.classList.add(`popup_is-open`);
     document.addEventListener('keydown',closePopupWithEscKey);
@@ -49,10 +45,10 @@ export function closePopup(popup) {
     popup.classList.remove(`popup_is-open`);
     document.removeEventListener('keydown',  closePopupWithEscKey);
     document.removeEventListener('mousedown',closePopupByClickOutsideThePopup);
-    // resetPopup(popup);
-};
 
-closeButton.forEach(btn => btn.addEventListener('click', () => {
-    const popup = btn.closest('.popup');
-    closePopup(popup);
-  }));
+    const resetValidation = new FormValidator(formSettings, popup);
+
+    if(popup != popupImagePreview){
+        resetValidation.resetValidation();
+    }
+};

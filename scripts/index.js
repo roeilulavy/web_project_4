@@ -1,6 +1,7 @@
 // Imports
 import Card from "./Cards.js";
 import FormValidator from "./FormValidator.js";
+import { closePopup } from "./utils.js"; 
 
 const initialCards = [{
   name: "Yosemite Valley",
@@ -28,9 +29,13 @@ const initialCards = [{
 }
 ];
 
+// Popups
+export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+export const popupAddCard = document.querySelector('.popup_type_add-card');
+
 // Wrappers
 const editForm = document.querySelector('.popup__form');
-const elementForm = document.querySelector('.popup__form_type_add-card');
+const newCardForm = document.querySelector('.popup__form_type_add-card');
 const placesElements = document.querySelector('.elements');
 const cardTemplateSelector = '#element-template';
 
@@ -42,39 +47,13 @@ const profileDescription = document.querySelector('.profile__description');
 const titleInputValue = editForm.querySelector('.popup__input_type_name');
 const descriptionInputValue = editForm.querySelector('.popup__input_type_description');
 
-//Element data
-const addElementNameInput = elementForm.querySelector('.popup__input_type_card-name');
-const addElementLinkInput = elementForm.querySelector('.popup__input_type_card-link');
+//New card data
+const newCardNameInput = newCardForm.querySelector('.popup__input_type_card-name');
+const newCardLinkInput = newCardForm.querySelector('.popup__input_type_card-link');
 
-function elementSubmitHandler(evt) {
-  evt.preventDefault();
-  const addElement = createCardElement({
-    name: addElementNameInput.value,
-    link: addElementLinkInput.value
-  });
-  placesElements.prepend(addElement);
-  closePopup(popupAddCard);
-}
 
-elementForm.addEventListener('submit', elementSubmitHandler);
-
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  profileTitle.textContent = titleInputValue.value;
-  profileDescription.textContent = descriptionInputValue.value;
-  closePopup(popupEditProfile);
-}
-
-editForm.addEventListener('submit', formSubmitHandler);
-
-export function editProfileData() {
-  titleInputValue.value = profileTitle.textContent;
-  descriptionInputValue.value = profileDescription.textContent;
-}
-
-//-----------//
-const formSelector = '.popup__form';
-const formSettings = {
+export const formSelector = '.popup__form';
+export const formSettings = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
   inactiveButtonClass: 'popup__submit_type_disable',
@@ -95,4 +74,33 @@ getFormList.forEach((formElement) => {
   formValidator.enableValidation();
 });
 
-export {formSelector, formSettings};
+export function profileData() {
+  titleInputValue.value = profileTitle.textContent;
+  descriptionInputValue.value = profileDescription.textContent;
+}
+
+function createNewCard(cardData) {
+  return new Card(cardData, cardTemplateSelector).render();
+}
+
+function newCardSubmitHandler(evt) {
+  evt.preventDefault();
+
+  const addElement = createNewCard({
+    name: newCardNameInput.value,
+    link: newCardLinkInput.value
+  });
+  placesElements.prepend(addElement);
+  closePopup(popupAddCard);
+}
+
+newCardForm.addEventListener('submit', newCardSubmitHandler);
+
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  profileTitle.textContent = titleInputValue.value;
+  profileDescription.textContent = descriptionInputValue.value;
+  closePopup(popupEditProfile);
+}
+
+editForm.addEventListener('submit', formSubmitHandler);
