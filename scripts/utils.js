@@ -36,6 +36,11 @@ const closePopupByClickOutsideThePopup = (evt) => {
 };
 
 export function showPopup(popup) {
+    const resetValidation = new FormValidator(formSettings, popup);
+    if(popup != popupImagePreview){
+        resetValidation.resetValidation();
+    }
+
     popup.classList.add(`popup_is-open`);
     document.addEventListener('keydown',closePopupWithEscKey);
     document.addEventListener('mousedown',closePopupByClickOutsideThePopup);
@@ -45,10 +50,4 @@ export function closePopup(popup) {
     popup.classList.remove(`popup_is-open`);
     document.removeEventListener('keydown',  closePopupWithEscKey);
     document.removeEventListener('mousedown',closePopupByClickOutsideThePopup);
-
-    const resetValidation = new FormValidator(formSettings, popup);
-
-    if(popup != popupImagePreview){
-        resetValidation.resetValidation();
-    }
 };

@@ -67,12 +67,12 @@ initialCards.forEach((cardData) => {
   placesElements.prepend(card.render());
 });
 
-const getFormList = Array.from(document.querySelectorAll(formSelector));
-getFormList.forEach((formElement) => {
-  const formValidator = new FormValidator(formSettings, formElement);
+// const getFormList = Array.from(document.querySelectorAll(formSelector));
+// getFormList.forEach((formElement) => {
+//   const formValidator = new FormValidator(formSettings, formElement);
 
-  formValidator.enableValidation();
-});
+//   formValidator.enableValidation();
+// });
 
 export function profileData() {
   titleInputValue.value = profileTitle.textContent;
@@ -104,3 +104,10 @@ function formSubmitHandler(evt) {
 }
 
 editForm.addEventListener('submit', formSubmitHandler);
+
+const getFormList = Array.from(document.querySelectorAll(formSelector));
+getFormList.forEach((formElement) => {
+  const formValidator = new FormValidator(formSettings, formElement);
+
+  formValidator.enableValidation();
+});
