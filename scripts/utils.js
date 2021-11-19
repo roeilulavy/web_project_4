@@ -1,22 +1,27 @@
-import {profileData as getProfileData, formSettings, popupEditProfile, popupAddCard} from "./index.js";
-import FormValidator from "./FormValidator.js";
-
 // Buttons
-const profileEditButton = document.querySelector('.profile__edit-button');
-const profileAddButton = document.querySelector('.profile__add-button');
+export const profileEditButton = document.querySelector('.profile__edit-button');
+export const profileAddButton = document.querySelector('.profile__add-button');
 const closeButton = document.querySelectorAll('.popup__close');
 
 // Popups
-const popupImagePreview = document.querySelector('.popup_type_image-preview');
+export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+export const popupAddCard = document.querySelector('.popup_type_add-card');
+export const popupImagePreview = document.querySelector('.popup_type_image-preview');
 
-profileEditButton.addEventListener('click', () => {
-    showPopup(popupEditProfile);
-    getProfileData();
-});
+// Forms
+export const newCardForm = document.querySelector('#add-card-form');
+export const editProfileForm = document.querySelector('#edit-profile-form');
 
-profileAddButton.addEventListener('click', () => {
-    showPopup(popupAddCard);
-});
+//Form data
+export const profileTitle = document.querySelector('.profile__title');
+export const profileDescription = document.querySelector('.profile__description');
+
+export const titleInputValue = editProfileForm.querySelector('.popup__input_type_name');
+export const descriptionInputValue = editProfileForm.querySelector('.popup__input_type_description');
+
+//New card data
+export const newCardNameInput = newCardForm.querySelector('.popup__input_type_card-name');
+export const newCardLinkInput = newCardForm.querySelector('.popup__input_type_card-link');
 
 closeButton.forEach(btn => btn.addEventListener('click', () => {
     const popup = btn.closest('.popup');
@@ -35,12 +40,16 @@ const closePopupByClickOutsideThePopup = (evt) => {
     }
 };
 
-export function showPopup(popup) {
-    const resetValidation = new FormValidator(formSettings, popup);
-    if(popup != popupImagePreview){
-        resetValidation.resetValidation();
-    }
+export function profileData() {
+    titleInputValue.value = profileTitle.textContent;
+    descriptionInputValue.value = profileDescription.textContent;
+};
 
+export function resetNewCardForm(formElement, inputElement, settings) {
+    newCardForm.reset();
+}
+
+export function showPopup(popup) {
     popup.classList.add(`popup_is-open`);
     document.addEventListener('keydown',closePopupWithEscKey);
     document.addEventListener('mousedown',closePopupByClickOutsideThePopup);

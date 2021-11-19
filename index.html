@@ -33,7 +33,7 @@
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">Edit profile</h3>
-          <form class="popup__form" name="user_info">
+          <form class="popup__form" id="edit-profile-form" name="user_info">
             <input id="input_type_name" type="text" name="name" class="popup__input popup__input_type_name" placeholder="Name" minlength="2" maxlength="40" required>
             <span id="input_type_name-error" class="popup__error"></span>
             <input id="input_type_description" type="text" name="description" class="popup__input popup__input_type_description" placeholder="About me" minlength="2" maxlength="200" required>
@@ -47,7 +47,7 @@
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">New Place</h3>
-          <form class="popup__form popup__form_type_add-card" name="new-card_info">
+          <form class="popup__form" id="add-card-form" name="new-card_info">
             <input id="input_type_title" type="text" name="card-name" class="popup__input popup__input_type_card-name" placeholder="Title" minlength="1" maxlength="30" required>
             <span id="input_type_title-error" class="popup__error popup__error_visible"></span>
             <input id="input_type_url" type="url" name="card-link" class="popup__input popup__input_type_card-link" placeholder="Image link" required>
