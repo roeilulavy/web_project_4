@@ -1,7 +1,7 @@
 // Buttons
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileAddButton = document.querySelector('.profile__add-button');
-const closeButton = document.querySelectorAll('.popup__close');
+const allCloseButtons = document.querySelectorAll('.popup__close');
 
 // Popups
 export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
@@ -23,7 +23,7 @@ export const descriptionInputValue = editProfileForm.querySelector('.popup__inpu
 export const newCardNameInput = newCardForm.querySelector('.popup__input_type_card-name');
 export const newCardLinkInput = newCardForm.querySelector('.popup__input_type_card-link');
 
-closeButton.forEach(btn => btn.addEventListener('click', () => {
+allCloseButtons.forEach(btn => btn.addEventListener('click', () => {
     const popup = btn.closest('.popup');
     closePopup(popup);
 }));

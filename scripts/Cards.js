@@ -1,5 +1,6 @@
 import {showPopup} from './utils.js';
 
+const popupImagePreview = document.querySelector('.popup_type_image-preview');
 export default class Card {
     constructor(cardData, cardTemplateSelector) {
         this._name = cardData.name;
@@ -16,8 +17,6 @@ export default class Card {
     }
 
     _handlePreviewPicture() {
-        const popupImagePreview = document.querySelector('.popup_type_image-preview');
-
         popupImagePreview.querySelector('.popup__image').src = this._link;
         popupImagePreview.querySelector('.popup__image').alt = this._name;
         popupImagePreview.querySelector('.popup__figure').textContent = this._name;
