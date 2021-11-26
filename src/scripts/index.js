@@ -1,6 +1,7 @@
 // Imports
 import Card from "./Cards.js";
 import FormValidator from "./FormValidator.js";
+import '../pages/index.css';
 import {
   profileEditButton,
   profileAddButton,
