@@ -4,6 +4,11 @@ import FormValidator from "./FormValidator.js";
 import PopupWithImage from "./PopupWithImage.js";
 import '../pages/index.css';
 
+import {profileEditButton, profileAddButton} from "./utils.js";
+import UserInfo from "./UserInfo.js";
+import Popup from "./Popup.js";
+import PopupWithForm from "./PopupWithForm.js";
+
 
 const initialCards = [{
   name: "Yosemite Valley",
@@ -49,7 +54,6 @@ const formSettings = {
 const imagePopup = new PopupWithImage('.popup_type_image-preview');
 imagePopup.setEventListeners();
 
-
 const renderCard = (cardData, wrap) => {
   const card = new Card(cardData, cardTemplateSelector, imagePopup.open);
   wrap.prepend(card.render());
@@ -57,6 +61,18 @@ const renderCard = (cardData, wrap) => {
 
 initialCards.forEach((cardData) => {
   renderCard(cardData, placesElements);
+});
+
+profileEditButton.addEventListener('click', () => {
+  console.log('profileEditButton');
+  const editProfilePopup = new PopupWithForm(formSelector, '.popup_type_edit-profile');
+  editProfilePopup.setEventListeners();
+});
+
+profileAddButton.addEventListener('click', () => {
+  console.log('profileAddButton');
+  const addCardPopup = new PopupWithForm(formSelector, '.popup_type_add-card');
+  addCardPopup.setEventListeners();
 });
 
 // function newCardSubmitHandler(evt) {
