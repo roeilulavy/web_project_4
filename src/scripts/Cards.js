@@ -1,11 +1,21 @@
-import {showPopup} from './utils.js';
-
-const popupImagePreview = document.querySelector('.popup_type_image-preview');
 export default class Card {
-    constructor(cardData, cardTemplateSelector) {
+    constructor(cardData, cardSelector, onImageClick) {
         this._name = cardData.name;
         this._link = cardData.link;
-        this._template = document.querySelector(cardTemplateSelector).content.querySelector('.elements__element');
+
+        this._cardSelector = cardSelector;
+
+        this._onImageClick = onImageClick;
+    }
+
+    _getTemplate() {
+        const cardElement = document
+            .querySelector(this._cardSelector)
+            .content
+            .querySelector('.elements__element')
+            .cloneNode(true);
+
+        return cardElement;
     }
 
     _handleLikeIcon(evt) {
@@ -14,13 +24,11 @@ export default class Card {
 
     _handleDeleteCard() {
         this._element.remove();
+        this._element = null;
     }
 
     _handlePreviewPicture() {
-        popupImagePreview.querySelector('.popup__image').src = this._link;
-        popupImagePreview.querySelector('.popup__image').alt = this._name;
-        popupImagePreview.querySelector('.popup__figure').textContent = this._name;
-        showPopup(popupImagePreview);
+        this._onImageClick({ link: this._link, name: this._name });
     }
 
     _addEventListeners() {
@@ -38,8 +46,7 @@ export default class Card {
     }
 
     render() {
-        this._element = this._template.cloneNode(true);
-
+        this._element = this._getTemplate();
         this._addEventListeners();
 
         return this._element;
