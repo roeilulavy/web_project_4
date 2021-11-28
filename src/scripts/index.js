@@ -1,25 +1,9 @@
 // Imports
 import Card from "./Cards.js";
 import FormValidator from "./FormValidator.js";
+import PopupWithImage from "./PopupWithImage.js";
 import '../pages/index.css';
-import {
-  profileEditButton,
-  profileAddButton,
-  profileData,
-  showPopup,
-  closePopup,
-  popupEditProfile, 
-  popupAddCard,
-  editProfileForm,
-  profileTitle,
-  profileDescription,
-  titleInputValue,
-  descriptionInputValue,
-  newCardForm,
-  newCardNameInput,
-  newCardLinkInput,
-  resetNewCardForm
-} from "./utils.js"; 
+
 
 const initialCards = [{
   name: "Yosemite Valley",
@@ -59,47 +43,51 @@ const formSettings = {
   errorClass: 'popup__error_visible'
 }
 
-const cardFormValidator = new FormValidator(formSettings, popupAddCard);
-const profileFormValidator = new FormValidator(formSettings, popupEditProfile);
+// const cardFormValidator = new FormValidator(formSettings, popupAddCard);
+// const profileFormValidator = new FormValidator(formSettings, popupEditProfile);
 
-function createNewCard(cardData) {
-  return new Card(cardData, cardTemplateSelector).render();
+const imagePopup = new PopupWithImage('.popup_type_image-preview');
+imagePopup.setEventListeners();
+
+
+const renderCard = (cardData, wrap) => {
+  const card = new Card(cardData, cardTemplateSelector, imagePopup.open);
+  wrap.prepend(card.render());
 };
 
 initialCards.forEach((cardData) => {
-  const cards = createNewCard(cardData);
-  placesElements.prepend(cards);
+  renderCard(cardData, placesElements);
 });
 
-function newCardSubmitHandler(evt) {
-  evt.preventDefault();
-  const newCardElement = createNewCard({name: newCardNameInput.value, link: newCardLinkInput.value});
-  placesElements.prepend(newCardElement);
-  closePopup(popupAddCard);
-}
+// function newCardSubmitHandler(evt) {
+//   evt.preventDefault();
+//   const newCardElement = createNewCard({name: newCardNameInput.value, link: newCardLinkInput.value});
+//   placesElements.prepend(newCardElement);
+  // closePopup(popupAddCard);
+// }
 
-newCardForm.addEventListener('submit', newCardSubmitHandler);
+// newCardForm.addEventListener('submit', newCardSubmitHandler);
 
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  profileTitle.textContent = titleInputValue.value;
-  profileDescription.textContent = descriptionInputValue.value;
-  closePopup(popupEditProfile);
-}
+// function formSubmitHandler(evt) {
+//   evt.preventDefault();
+//   profileTitle.textContent = titleInputValue.value;
+//   profileDescription.textContent = descriptionInputValue.value;
+  // closePopup(popupEditProfile);
+// }
 
-editProfileForm.addEventListener('submit', formSubmitHandler);
+// editProfileForm.addEventListener('submit', formSubmitHandler);
 
-profileEditButton.addEventListener('click', () => {
-  profileData();
-  profileFormValidator.resetValidation();
-  showPopup(popupEditProfile);
-});
+// profileEditButton.addEventListener('click', () => {
+//   profileData();
+//   profileFormValidator.resetValidation();
+  // showPopup(popupEditProfile);
+// });
 
-profileAddButton.addEventListener('click', () => {
-  resetNewCardForm();
-  cardFormValidator.resetValidation();
-  showPopup(popupAddCard);
-});
+// profileAddButton.addEventListener('click', () => {
+//   resetNewCardForm();
+//   cardFormValidator.resetValidation();
+  // showPopup(popupAddCard);
+// });
 
-cardFormValidator.enableValidation();
-profileFormValidator.enableValidation();
+// cardFormValidator.enableValidation();
+// profileFormValidator.enableValidation();
