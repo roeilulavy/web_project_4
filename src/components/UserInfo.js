@@ -1,4 +1,4 @@
-import {profileName, profileDescription} from '../index';
+import {profileName, profileDescription} from '../page/index';
 
 export default class UserInfo {
     constructor(name, description) {

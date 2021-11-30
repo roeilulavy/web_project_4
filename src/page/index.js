@@ -1,13 +1,13 @@
 // Imports
-import { initialCards } from "./data/cardsData";
-import Section from "./components/Section.js";
-import Card from "./components/Cards";
-import PopupWithImage from "./components/PopupWithImage";
-import PopupWithForm from "./components/PopupWithForm";
-import UserInfo from "./components/UserInfo";
-import FormValidator from "./components/FormValidator";
+import { initialCards } from "../components/cardsData";
+import Section from "../components/Section.js";
+import Card from "../components/Cards";
+import PopupWithImage from "../components/PopupWithImage";
+import PopupWithForm from "../components/PopupWithForm";
+import UserInfo from "../components/UserInfo";
+import FormValidator from "../components/FormValidator";
 
-import '../pages/index.css';
+import '../page/index.css';
 
 //Popups
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
