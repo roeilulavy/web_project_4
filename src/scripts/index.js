@@ -1,15 +1,20 @@
 // Imports
-import {initialCards} from "./data/cardsData";
+import { initialCards } from "./data/cardsData";
 import Card from "./components/Cards";
 import FormValidator from "./components/FormValidator";
 import PopupWithImage from "./components/PopupWithImage";
 import PopupWithForm from "./components/PopupWithForm";
 import Section from "./components/Section.js";
-import {profileEditButton, profileAddButton} from "./utils.js";
+import { profileEditButton, profileAddButton } from "./utils.js";
 import '../pages/index.css';
 
+//Images
+// import logo from '../images/logo/logo.svg';
+// const headerLogo = document.getElementById('header__logo');// find the logo 
+// headerLogo.src = logo;
 
-const cardTemplateSelector = '#element-template';
+
+const cardTemplate = '#element-template';
 const placesElements = '.elements';
 
 const formSelector = '.popup__form';
@@ -24,8 +29,21 @@ const formSettings = {
 // const cardFormValidator = new FormValidator(formSettings, popupAddCard);
 // const profileFormValidator = new FormValidator(formSettings, popupEditProfile);
 
-const cardSection = new Section({ data: initialCards }, placesElements);
-cardSection.renderer();
+const imagePopup = new PopupWithImage('.popup_type_image-preview');// instance for popup of the image 
+imagePopup.setEventListeners();
+
+function createCard(cardInfo) {
+  return new Card(cardInfo, cardTemplate, imagePopup.open).render();
+}
+
+const cardSection = new Section({
+  items: initialCards, renderer: (element) => {
+    const card = createCard(element);
+    cardSection.addItem(card);
+  }
+}, placesElements);
+
+cardSection.render();
 
 // const imagePopup = new PopupWithImage('.popup_type_image-preview');
 // imagePopup.setEventListeners();
