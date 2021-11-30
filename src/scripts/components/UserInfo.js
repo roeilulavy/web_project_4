@@ -1,19 +1,18 @@
-import Popup from "./Popup";
+import {profileName, profileDescription} from '../index';
 
-export default class UserInfo extends Popup {
-    constructor(name, job) {
+export default class UserInfo {
+    constructor(name, description) {
         this._name = name;
-        this._job = job;
+        this._description = description;
     }
 
     getUserInfo() {
-        console.log('Get user info')
-        const userName = this._popup.querySelector('.popup__input_type_name');
-        const userJob = this._popup.querySelector('.popup__input_type_description');
-
+        const userInfo = { name: profileName.textContent, description: profileDescription.textContent };
+        return userInfo;
     }
 
-    setUserInfo() {
-
+    setUserInfo({name, description}) {
+        profileName.textContent = name;
+        profileDescription.textContent = description;
     }
 }
