@@ -51,13 +51,13 @@ profileEditButton.addEventListener('click', () => {
   getProfileInfo();
   editProfilePopup.open();
   editProfilePopup.setEventListeners();
-  resetUserForm();
+  profileFormValidator.resetValidation();
 });
 
 profileAddButton.addEventListener('click', () => {
   addNewCardPopup.open();
   addNewCardPopup.setEventListeners();
-  resetNewCardForm();
+  cardFormValidator.resetValidation();
 });
 
 function createCard(cardInfo) {
@@ -94,14 +94,6 @@ function setProfileInfo(event) {
   event.preventDefault();
   userInfo.setUserInfo({ name: popupInputName.value, description: popupInputDescription.value });
   editProfilePopup.close();
-}
-
-function resetUserForm() {
-  profileFormValidator.resetValidation();
-}
-
-function resetNewCardForm() {
-  cardFormValidator.resetValidation();
 }
 
 cardFormValidator.enableValidation();
