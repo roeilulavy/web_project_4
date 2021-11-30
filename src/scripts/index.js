@@ -1,13 +1,13 @@
 // Imports
-import {initialCards} from "../data/cardsData.js";
-import Card from "./Cards.js";
-import FormValidator from "./FormValidator.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-
+import {initialCards} from "./data/cardsData";
+import Card from "./components/Cards";
+import FormValidator from "./components/FormValidator";
+import PopupWithImage from "./components/PopupWithImage";
+import PopupWithForm from "./components/PopupWithForm";
+import Section from "./components/Section.js";
 import {profileEditButton, profileAddButton} from "./utils.js";
 import '../pages/index.css';
-import Section from "./Section.js";
+
 
 const cardTemplateSelector = '#element-template';
 const placesElements = '.elements';
