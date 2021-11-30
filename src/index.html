@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Around the U.S</title>
 </head>
 
@@ -12,13 +11,14 @@
   <div class="page__wrapper">
 
     <header class="header">
-      <img class="header__logo" src="images/logo/logo.svg" alt="Around the U.S logo" />
+      <img class="header__logo" src="<%= require('./images/logo/logo.svg')%>" alt="Around the U.S logo" />
     </header>
 
     <main class="content">
 
       <section class="profile">
-        <img class="profile__profile-image" src="images/profile/profile.jpg" alt="User profile picture" />
+        <img class="profile__profile-image" src="<%= require('./images/profile/profile.jpg')%>"
+          alt="User profile picture" />
         <div class="profile__profile-info">
           <h1 class="profile__title">Jacques Cousteau</h1>
           <button type="button" class="profile__edit-button"></button>
@@ -34,9 +34,12 @@
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">Edit profile</h3>
           <form class="popup__form" id="edit-profile-form" name="user_info">
-            <input id="input_type_name" type="text" name="name" class="popup__input popup__input_type_name" placeholder="Name" minlength="2" maxlength="40" required>
+            <input id="input_type_name" type="text" name="name" class="popup__input popup__input_type_name"
+              placeholder="Name" minlength="2" maxlength="40" required>
             <span id="input_type_name-error" class="popup__error"></span>
-            <input id="input_type_description" type="text" name="description" class="popup__input popup__input_type_description" placeholder="About me" minlength="2" maxlength="200" required>
+            <input id="input_type_description" type="text" name="description"
+              class="popup__input popup__input_type_description" placeholder="About me" minlength="2" maxlength="200"
+              required>
             <span id="input_type_description-error" class="popup__error"></span>
             <button type="submit" class="popup__submit popup__submit_type_disable">Save</button>
           </form>
@@ -48,9 +51,11 @@
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">New Place</h3>
           <form class="popup__form" id="add-card-form" name="new-card_info">
-            <input id="input_type_title" type="text" name="card-name" class="popup__input popup__input_type_card-name" placeholder="Title" minlength="1" maxlength="30" required>
+            <input id="input_type_title" type="text" name="card-name" class="popup__input popup__input_type_card-name"
+              placeholder="Title" minlength="1" maxlength="30" required>
             <span id="input_type_title-error" class="popup__error popup__error_visible"></span>
-            <input id="input_type_url" type="url" name="card-link" class="popup__input popup__input_type_card-link" placeholder="Image link" required>
+            <input id="input_type_url" type="url" name="card-link" class="popup__input popup__input_type_card-link"
+              placeholder="Image link" required>
             <span id="input_type_url-error" class="popup__error"></span>
             <button type="submit" class="popup__submit popup__submit_type_disable">Create</button>
           </form>
@@ -60,7 +65,7 @@
       <div class="popup popup_type_image-preview">
         <div class="popup__content-wrapper">
           <button type="button" class="popup__close"></button>
-          <img class="popup__image" src="#" alt="#">
+          <img class="popup__image" src="" alt="">
           <figure class="popup__figure"></figure>
         </div>
       </div>
@@ -73,7 +78,7 @@
 
   <template id="element-template">
     <article class="elements__element">
-      <img class="elements__image" src="#" alt="#">
+      <img class="elements__image" src="" alt="">
       <button type="button" class="elements__delete-button" name="delete-button"></button>
       <div class="elements__holder">
         <h2 class="elements__caption"></h2>
@@ -81,7 +86,6 @@
       </div>
     </article>
   </template>
-
-  <script type="module" src="./scripts/index.js"></script>
 </body>
+
 </html>
