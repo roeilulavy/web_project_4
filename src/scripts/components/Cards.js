@@ -6,6 +6,8 @@ export default class Card {
         this._cardSelector = cardSelector;
 
         this._onImageClick = onImageClick;
+
+        this._element;
     }
 
     _getTemplate() {

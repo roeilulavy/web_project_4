@@ -13,8 +13,8 @@ export const newCardForm = document.querySelector('#add-card-form');
 export const editProfileForm = document.querySelector('#edit-profile-form');
 
 //Form data
-// export const profileTitle = document.querySelector('.profile__title');
-// export const profileDescription = document.querySelector('.profile__description');
+const profileTitle = document.querySelector('.profile__title');
+const profileDescription = document.querySelector('.profile__description');
 
 // export const titleInputValue = editProfileForm.querySelector('.popup__input_type_name');
 // export const descriptionInputValue = editProfileForm.querySelector('.popup__input_type_description');
@@ -23,7 +23,10 @@ export const editProfileForm = document.querySelector('#edit-profile-form');
 // export const newCardNameInput = newCardForm.querySelector('.popup__input_type_card-name');
 // export const newCardLinkInput = newCardForm.querySelector('.popup__input_type_card-link');
 
-
+export const userData = [{
+    userName: profileTitle.textContent,
+    userJob: profileDescription.textContent
+}]
 
 // export function profileData() {
 //     titleInputValue.value = profileTitle.textContent;
