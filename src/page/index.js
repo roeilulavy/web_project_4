@@ -9,6 +9,10 @@ import FormValidator from "../components/FormValidator";
 
 import '../page/index.css';
 
+//Images
+import logo from '../images/logo/logo.svg';
+import profileImg from '../images/profile/profile.jpg';
+
 //Popups
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
@@ -29,6 +33,11 @@ const popupInputName = document.querySelector('.popup__input_type_name');
 const popupInputDescription = document.querySelector('.popup__input_type_description');
 const inputCardTitle = document.querySelector('.popup__input_type_card-name');
 const inputUrl = document.querySelector('.popup__input_type_card-link');
+
+const headerLogo = document.querySelector('.header__logo');
+headerLogo.src = logo;
+const profileImage = document.querySelector('.profile__profile-image');
+profileImage.src = profileImg;
 
 const userInfo = new UserInfo({ name: profileName.textContent, description: profileDescription.textContent });
 
