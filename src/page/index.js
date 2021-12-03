@@ -71,12 +71,8 @@ const cardSection = new Section({
 
 cardSection.render();
 
-function submitNewCardForm(event) {
-  event.preventDefault();
-  const cardElement = createCard({
-    name: inputCardTitle.value,
-    link: inputUrl.value
-  });
+function submitNewCardForm(formInfo) {
+  const cardElement = createCard(formInfo);
 
   cardSection.addItem(cardElement);
   addNewCardPopup.close();
@@ -88,10 +84,11 @@ function getProfileInfo() {
   popupInputDescription.value = userData.description; 
 }
 
-function setProfileInfo(event) {
-  event.preventDefault();
-  userInfo.setUserInfo({ name: popupInputName.value, description: popupInputDescription.value });
-  editProfilePopup.close();
+function setProfileInfo(formInfo) {
+  // userInfo.setUserInfo(formInfo);
+  console.log(formInfo);
+  profileName.value = formInfo.name;
+  
 }
 
 function editProfileEventListener() {
