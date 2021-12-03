@@ -1,5 +1,3 @@
-import {profileName, profileDescription} from '../page/index';
-
 export default class UserInfo {
     constructor(name, description) {
         this._name = name;
@@ -7,12 +5,12 @@ export default class UserInfo {
     }
 
     getUserInfo() {
-        const userInfo = { name: profileName.textContent, description: profileDescription.textContent };
-        return userInfo;
+        const getUserData = { name: this._name, description: this._description };
+        return getUserData;
     }
 
-    setUserInfo({name, description}) {
-        profileName.textContent = name;
-        profileDescription.textContent = description;
+    setUserInfo() {
+        const setUserData = { name: this._name, description: this._description };
+        return setUserData;
     }
 }
