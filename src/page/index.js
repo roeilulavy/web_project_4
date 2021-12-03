@@ -1,11 +1,12 @@
 // Imports
-import { initialCards } from "../components/cardsData";
-import Section from "../components/Section.js";
-import Card from "../components/Cards";
-import PopupWithImage from "../components/PopupWithImage";
-import PopupWithForm from "../components/PopupWithForm";
-import UserInfo from "../components/UserInfo";
-import FormValidator from "../components/FormValidator";
+import { initialCards } from "../scripts/utils/cardsData";
+import Section from "../scripts/components/Section";
+import Card from "../scripts/components/Cards";
+import PopupWithImage from "../scripts/components/PopupWithImage";
+import PopupWithForm from "../scripts/components/PopupWithForm";
+import UserInfo from "../scripts/components/UserInfo";
+import FormValidator from "../scripts/components/FormValidator";
+import {cardTemplate, placesElements} from "../scripts/utils/constants";
 
 import '../page/index.css';
 
@@ -32,9 +33,6 @@ const inputUrl = document.querySelector('.popup__input_type_card-link');
 
 const userInfo = new UserInfo({ name: profileName.textContent, description: profileDescription.textContent });
 
-const cardTemplate = '#element-template';
-const placesElements = '.elements';
-
 //Form
 const formSettings = {
   inputSelector: '.popup__input',
@@ -50,13 +48,13 @@ const cardFormValidator = new FormValidator(formSettings, popupAddCard);
 profileEditButton.addEventListener('click', () => {
   getProfileInfo();
   editProfilePopup.open();
-  editProfilePopup.setEventListeners();
+  editProfileEventListener();
   profileFormValidator.resetValidation();
 });
 
 profileAddButton.addEventListener('click', () => {
   addNewCardPopup.open();
-  addNewCardPopup.setEventListeners();
+  addNewCardEventListener();
   cardFormValidator.resetValidation();
 });
 
@@ -96,5 +94,16 @@ function setProfileInfo(event) {
   editProfilePopup.close();
 }
 
+function editProfileEventListener() {
+  editProfilePopup.setEventListeners();
+}
+
+function addNewCardEventListener() {
+  addNewCardPopup.setEventListeners();
+}
+
 cardFormValidator.enableValidation();
 profileFormValidator.enableValidation();
+
+
+
