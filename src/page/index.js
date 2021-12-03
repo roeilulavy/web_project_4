@@ -73,6 +73,7 @@ cardSection.render();
 
 function submitNewCardForm(formInfo) {
   const cardElement = createCard(formInfo);
+  console.log(formInfo);
 
   cardSection.addItem(cardElement);
   addNewCardPopup.close();
@@ -87,8 +88,8 @@ function getProfileInfo() {
 function setProfileInfo(formInfo) {
   // userInfo.setUserInfo(formInfo);
   console.log(formInfo);
-  profileName.value = formInfo.name;
-  
+  profileName.textContent = formInfo.name;
+  profileDescription.textContent = formInfo.description;
 }
 
 function editProfileEventListener() {
