@@ -1,11 +1,12 @@
 // Imports
-import { initialCards } from "../components/cardsData";
-import Section from "../components/Section.js";
-import Card from "../components/Cards";
-import PopupWithImage from "../components/PopupWithImage";
-import PopupWithForm from "../components/PopupWithForm";
-import UserInfo from "../components/UserInfo";
-import FormValidator from "../components/FormValidator";
+import { initialCards } from "../scripts/utils/cardsData";
+import Section from "../scripts/components/Section";
+import Card from "../scripts/components/Cards";
+import PopupWithImage from "../scripts/components/PopupWithImage";
+import PopupWithForm from "../scripts/components/PopupWithForm";
+import UserInfo from "../scripts/components/UserInfo";
+import FormValidator from "../scripts/components/FormValidator";
+import {cardTemplate, placesElements} from "../scripts/utils/constants";
 
 import '../page/index.css';
 
@@ -23,17 +24,12 @@ const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 
 //DOM Elements
-export const profileName = document.querySelector('.profile__title');
-export const profileDescription = document.querySelector('.profile__description');
+const profileName = document.querySelector('.profile__title');
+const profileDescription = document.querySelector('.profile__description');
 const popupInputName = document.querySelector('.popup__input_type_name');
 const popupInputDescription = document.querySelector('.popup__input_type_description');
 const inputCardTitle = document.querySelector('.popup__input_type_card-name');
 const inputUrl = document.querySelector('.popup__input_type_card-link');
-
-const userInfo = new UserInfo({ name: profileName.textContent, description: profileDescription.textContent });
-
-const cardTemplate = '#element-template';
-const placesElements = '.elements';
 
 //Form
 const formSettings = {
@@ -46,17 +42,19 @@ const formSettings = {
 
 const profileFormValidator = new FormValidator(formSettings, popupEditProfile);
 const cardFormValidator = new FormValidator(formSettings, popupAddCard);
+const userInfo = new UserInfo(profileName.textContent, profileDescription.textContent);
+
 
 profileEditButton.addEventListener('click', () => {
-  getProfileInfo();
   editProfilePopup.open();
-  editProfilePopup.setEventListeners();
+  getProfileInfo();
   profileFormValidator.resetValidation();
+  editProfileEventListener();
 });
 
 profileAddButton.addEventListener('click', () => {
   addNewCardPopup.open();
-  addNewCardPopup.setEventListeners();
+  addNewCardEventListener();
   cardFormValidator.resetValidation();
 });
 
@@ -85,9 +83,9 @@ function submitNewCardForm(event) {
 }
 
 function getProfileInfo() {
-  const userData = userInfo.getUserInfo();
+  const userData = userInfo.getUserInfo(); 
   popupInputName.value = userData.name;
-  popupInputDescription.value = userData.description;
+  popupInputDescription.value = userData.description; 
 }
 
 function setProfileInfo(event) {
@@ -96,5 +94,16 @@ function setProfileInfo(event) {
   editProfilePopup.close();
 }
 
+function editProfileEventListener() {
+  editProfilePopup.setEventListeners();
+}
+
+function addNewCardEventListener() {
+  addNewCardPopup.setEventListeners();
+}
+
 cardFormValidator.enableValidation();
 profileFormValidator.enableValidation();
+
+
+
