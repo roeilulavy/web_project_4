@@ -10,6 +10,10 @@ import {cardTemplate, placesElements} from "../scripts/utils/constants";
 
 import '../page/index.css';
 
+//Images
+import logo from '../images/logo/logo.svg';
+import profileImg from '../images/profile/profile.jpg';
+
 //Popups
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
