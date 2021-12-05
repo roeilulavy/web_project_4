@@ -6,13 +6,16 @@ import PopupWithImage from "../scripts/components/PopupWithImage";
 import PopupWithForm from "../scripts/components/PopupWithForm";
 import UserInfo from "../scripts/components/UserInfo";
 import FormValidator from "../scripts/components/FormValidator";
-import {cardTemplate, placesElements} from "../scripts/utils/constants";
+import {headerLogo, profileImage, cardTemplate, placesElements} from "../scripts/utils/constants";
 
 import '../page/index.css';
 
 //Images
 import logo from '../images/logo/logo.svg';
 import profileImg from '../images/profile/profile.jpg';
+
+headerLogo.src = logo;
+profileImage.src = profileImg;
 
 //Popups
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
@@ -21,7 +24,6 @@ const popupAddCard = document.querySelector('.popup_type_add-card');
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', setProfileInfo);
 const addNewCardPopup = new PopupWithForm('.popup_type_add-card', submitNewCardForm);
 const imagePopup = new PopupWithImage('.popup_type_image-preview');
-
 
 //Buttons
 const profileEditButton = document.querySelector('.profile__edit-button');
