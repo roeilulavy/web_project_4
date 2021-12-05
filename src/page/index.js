@@ -17,7 +17,7 @@ const popupAddCard = document.querySelector('.popup_type_add-card');
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', setProfileInfo);
 const addNewCardPopup = new PopupWithForm('.popup_type_add-card', submitNewCardForm);
 const imagePopup = new PopupWithImage('.popup_type_image-preview');
-imagePopup.setEventListeners();
+
 
 //Buttons
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -28,8 +28,6 @@ const profileName = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 const popupInputName = document.querySelector('.popup__input_type_name');
 const popupInputDescription = document.querySelector('.popup__input_type_description');
-const inputCardTitle = document.querySelector('.popup__input_type_card-name');
-const inputUrl = document.querySelector('.popup__input_type_card-link');
 
 //Form
 const formSettings = {
@@ -40,28 +38,6 @@ const formSettings = {
   errorClass: 'popup__error_visible'
 }
 
-const profileFormValidator = new FormValidator(formSettings, popupEditProfile);
-const cardFormValidator = new FormValidator(formSettings, popupAddCard);
-const userInfo = new UserInfo(profileName.textContent, profileDescription.textContent);
-
-
-profileEditButton.addEventListener('click', () => {
-  editProfilePopup.open();
-  getProfileInfo();
-  profileFormValidator.resetValidation();
-  editProfileEventListener();
-});
-
-profileAddButton.addEventListener('click', () => {
-  addNewCardPopup.open();
-  addNewCardEventListener();
-  cardFormValidator.resetValidation();
-});
-
-function createCard(cardInfo) {
-  return new Card(cardInfo, cardTemplate, imagePopup.open).render();
-}
-
 const cardSection = new Section({
   items: initialCards, renderer: (element) => {
     const card = createCard(element);
@@ -69,14 +45,49 @@ const cardSection = new Section({
   }
 }, placesElements);
 
-cardSection.render();
+const profileFormValidator = new FormValidator(formSettings, popupEditProfile);
+const cardFormValidator = new FormValidator(formSettings, popupAddCard);
+const userInfo = new UserInfo(profileName.textContent, profileDescription.textContent);
 
-function submitNewCardForm(event) {
-  event.preventDefault();
-  const cardElement = createCard({
-    name: inputCardTitle.value,
-    link: inputUrl.value
+init();
+
+function init() {
+  setEventListeners();
+  enableValidations();
+
+  cardSection.render();
+}
+
+function enableValidations() {
+  cardFormValidator.enableValidation();
+  profileFormValidator.enableValidation();
+}
+
+function setEventListeners() {
+  imagePopup.setEventListeners();
+  editProfilePopup.setEventListeners();
+  addNewCardPopup.setEventListeners();
+
+  profileEditButton.addEventListener('click', () => {
+    editProfilePopup.open();
+    
+    getProfileInfo();
+    profileFormValidator.resetValidation();  
   });
+  
+  profileAddButton.addEventListener('click', () => {
+    addNewCardPopup.open();
+    cardFormValidator.resetValidation();
+  });
+}
+
+function createCard(cardInfo) {
+  return new Card(cardInfo, cardTemplate, imagePopup.open).render();
+}
+
+function submitNewCardForm(formInfo) {
+  const cardElement = createCard(formInfo);
+  console.log(formInfo);
 
   cardSection.addItem(cardElement);
   addNewCardPopup.close();
@@ -88,22 +99,9 @@ function getProfileInfo() {
   popupInputDescription.value = userData.description; 
 }
 
-function setProfileInfo(event) {
-  event.preventDefault();
-  userInfo.setUserInfo({ name: popupInputName.value, description: popupInputDescription.value });
+function setProfileInfo(formInfo) {
+  userInfo.setUserInfo(formInfo.name, formInfo.description);
+  profileName.textContent = formInfo.name;
+  profileDescription.textContent = formInfo.description;
   editProfilePopup.close();
 }
-
-function editProfileEventListener() {
-  editProfilePopup.setEventListeners();
-}
-
-function addNewCardEventListener() {
-  addNewCardPopup.setEventListeners();
-}
-
-cardFormValidator.enableValidation();
-profileFormValidator.enableValidation();
-
-
-

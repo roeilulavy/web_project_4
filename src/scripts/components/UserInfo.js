@@ -9,8 +9,8 @@ export default class UserInfo {
         return getUserData;
     }
 
-    setUserInfo() {
-        const setUserData = { name: this._name, description: this._description };
-        return setUserData;
+    setUserInfo(name, description) {
+        this._name = name;
+        this._description = description;
     }
 }
