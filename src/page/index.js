@@ -53,7 +53,7 @@ const cardSection = new Section({
 
 const profileFormValidator = new FormValidator(formSettings, popupEditProfile);
 const cardFormValidator = new FormValidator(formSettings, popupAddCard);
-const userInfo = new UserInfo(profileName.textContent, profileDescription.textContent);
+const userInfo = new UserInfo(profileName, profileDescription);
 
 init();
 
@@ -107,7 +107,5 @@ function getProfileInfo() {
 
 function setProfileInfo(formInfo) {
   userInfo.setUserInfo(formInfo.name, formInfo.description);
-  profileName.textContent = formInfo.name;
-  profileDescription.textContent = formInfo.description;
   editProfilePopup.close();
 }
