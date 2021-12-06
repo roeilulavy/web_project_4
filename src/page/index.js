@@ -6,7 +6,21 @@ import PopupWithImage from "../scripts/components/PopupWithImage";
 import PopupWithForm from "../scripts/components/PopupWithForm";
 import UserInfo from "../scripts/components/UserInfo";
 import FormValidator from "../scripts/components/FormValidator";
-import {headerLogo, profileImage, cardTemplate, placesElements} from "../scripts/utils/constants";
+import {
+  headerLogo,
+  profileImage,
+  popupEditProfile,
+  popupAddCard,
+  cardTemplate,
+  placesElements,
+  formSettings,
+  profileEditButton,
+  profileAddButton,
+  profileName,
+  profileDescription,
+  popupInputName,
+  popupInputDescription
+} from "../scripts/utils/constants";
 
 import '../page/index.css';
 
@@ -17,32 +31,13 @@ import profileImg from '../images/profile/profile.jpg';
 headerLogo.src = logo;
 profileImage.src = profileImg;
 
-//Popups
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const popupAddCard = document.querySelector('.popup_type_add-card');
-
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', setProfileInfo);
 const addNewCardPopup = new PopupWithForm('.popup_type_add-card', submitNewCardForm);
 const imagePopup = new PopupWithImage('.popup_type_image-preview');
+const profileFormValidator = new FormValidator(formSettings, popupEditProfile);
+const cardFormValidator = new FormValidator(formSettings, popupAddCard);
+const userInfo = new UserInfo(profileName, profileDescription);
 
-//Buttons
-const profileEditButton = document.querySelector('.profile__edit-button');
-const profileAddButton = document.querySelector('.profile__add-button');
-
-//DOM Elements
-const profileName = document.querySelector('.profile__title');
-const profileDescription = document.querySelector('.profile__description');
-const popupInputName = document.querySelector('.popup__input_type_name');
-const popupInputDescription = document.querySelector('.popup__input_type_description');
-
-//Form
-const formSettings = {
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_type_disable',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-}
 
 const cardSection = new Section({
   items: initialCards, renderer: (element) => {
@@ -50,10 +45,6 @@ const cardSection = new Section({
     cardSection.addItem(card);
   }
 }, placesElements);
-
-const profileFormValidator = new FormValidator(formSettings, popupEditProfile);
-const cardFormValidator = new FormValidator(formSettings, popupAddCard);
-const userInfo = new UserInfo(profileName.textContent, profileDescription.textContent);
 
 init();
 
@@ -107,7 +98,5 @@ function getProfileInfo() {
 
 function setProfileInfo(formInfo) {
   userInfo.setUserInfo(formInfo.name, formInfo.description);
-  profileName.textContent = formInfo.name;
-  profileDescription.textContent = formInfo.description;
   editProfilePopup.close();
 }
