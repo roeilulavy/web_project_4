@@ -7,6 +7,7 @@ export default class Section {
     }
 
     render() {
+        console.log('Section is now Rendering...');
         this._items.forEach(element => {
            this._element = this._renderer(element);
         });
