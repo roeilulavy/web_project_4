@@ -83,9 +83,6 @@ async function init() {
 }
 
 
-
-
-
 function enableValidations() {
   cardFormValidator.enableValidation()
   profileFormValidator.enableValidation()
@@ -129,7 +126,12 @@ function getProfileInfo() {
   popupInputDescription.value = userData.description
 }
 
-function setProfileInfo(formInfo) {
-  userInfo.setUserInfo(formInfo.name, formInfo.description)
+async function setProfileInfo(formInfo) {
+  console.log(formInfo);
+  const newUserData = await api.editUserData(formInfo.name, formInfo.description);
+  if(newUserData) {
+    userInfo.setUserInfo(newUserData.name, newUserData.about);
+  }
+  
   editProfilePopup.close()
 }
