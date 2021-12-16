@@ -55,7 +55,6 @@ const api = new Api({
 
 const cardSection = new Section(
   {
-    items: initialCards,
     renderer: element => {
       const card = createCard(element)
       cardSection.addItem(card)
@@ -74,15 +73,13 @@ async function init() {
   ])
 
   userInfo.setUserInfo(userData.name, userData.about);
-  initialCards = cards;
 
   if (cards){
-    cardSection.render();
+    cardSection.render(cards);
   }
 
   setEventListeners()
   enableValidations()
-  // cardSection.render()
 }
 
 
