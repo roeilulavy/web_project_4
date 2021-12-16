@@ -12,7 +12,7 @@ export default class Api {
     if (response.ok) {
       return response.json();
     } else {
-      console.log('There was an Error!', response.status, response.statusText);
+      console.log('Somthing went wrong initializing cards!', response.status, response.statusText);
     }
   }
 
@@ -24,9 +24,23 @@ export default class Api {
       if (response.ok) {
         return response.json();
       } else {
-        console.log('Somthing went wrong!', response.status, response.statusText);
+        console.log('Somthing went wrong getting user data!', response.status, response.statusText);
       }
   }
+
+  async editUserData(name, about) {
+    const response = await fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: { authorization: this._token, 'Content-Type': "application/json" },
+      body: JSON.stringify({ name: name, about: about })
+    })
+
+    if (response.ok) {
+      return response.json();
+    } else {
+      console.log('Somthing went wrong updating user data!', response.status, response.statusText);
+    }
+}
 
   async addCard(name, link) {
     const response = await fetch(`${this._url}/cards`, {
@@ -38,7 +52,7 @@ export default class Api {
       if (response.ok) {
         return response.json();
       } else {
-        console.log('Somthing went wrong!', response.status, response.statusText);
+        console.log('Somthing went wrong adding card!', response.status, response.statusText);
       }
   }
 
