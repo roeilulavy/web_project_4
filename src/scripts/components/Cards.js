@@ -2,7 +2,6 @@ export default class Card {
     constructor(cardData, cardSelector, onImageClick) {
         this._name = cardData.name;
         this._link = cardData.link;
-        this._likes = cardData.likes;
 
         this._cardSelector = cardSelector;
 
@@ -38,12 +37,10 @@ export default class Card {
         const likeButton = this._element.querySelector('.elements__like-button');
         const deleteButton = this._element.querySelector('.elements__delete-button');
         const cardImage = this._element.querySelector('.elements__image');
-        const likesCount = this._likes;
 
         cardImage.src = this._link;
         cardImage.alt = this._name;
         this._element.querySelector('.elements__caption').textContent = this._name;
-        this._element.querySelector('.elements__like-counter').textContent = likesCount.length;
 
         likeButton.addEventListener('click', this._handleLikeIcon);
         deleteButton.addEventListener('click', () => this._handleDeleteCard());
