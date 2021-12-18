@@ -8,6 +8,7 @@ export const profileImage = document.querySelector('.profile__profile-image');
 //Popups
 export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 export const popupAddCard = document.querySelector('.popup_type_add-card');
+export const popupDeleteCard = document.querySelector('.popup_type_delete-card');
 
 //Buttons
 export const profileEditButton = document.querySelector('.profile__edit-button');

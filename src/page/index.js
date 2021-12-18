@@ -34,19 +34,12 @@ import profileImg from '../images/profile/profile.jpg'
 headerLogo.src = logo
 profileImage.src = profileImg
 
-const editProfilePopup = new PopupWithForm(
-  '.popup_type_edit-profile',
-  setProfileInfo
-)
-const addNewCardPopup = new PopupWithForm(
-  '.popup_type_add-card',
-  submitNewCardForm
-)
-const imagePopup = new PopupWithImage('.popup_type_image-preview')
+const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', setProfileInfo);
+const addNewCardPopup = new PopupWithForm('.popup_type_add-card', submitNewCardForm);
+const imagePopup = new PopupWithImage('.popup_type_image-preview');
 const profileFormValidator = new FormValidator(formSettings, popupEditProfile)
 const cardFormValidator = new FormValidator(formSettings, popupAddCard)
 const userInfo = new UserInfo(profileName, profileDescription)
-let initialCards = [];
 
 const api = new Api({
   baseUrl: 'https://around.nomoreparties.co/v1/group-12',
@@ -82,12 +75,6 @@ async function init() {
   enableValidations()
 }
 
-
-function enableValidations() {
-  cardFormValidator.enableValidation()
-  profileFormValidator.enableValidation()
-}
-
 function setEventListeners() {
   imagePopup.setEventListeners()
   editProfilePopup.setEventListeners()
@@ -106,8 +93,13 @@ function setEventListeners() {
   })
 }
 
+function enableValidations() {
+  cardFormValidator.enableValidation()
+  profileFormValidator.enableValidation()
+}
+
 function createCard(cardInfo) {
-  return new Card(cardInfo, cardTemplate, imagePopup.open).render()
+  return new Card(cardInfo, cardTemplate, imagePopup.open).render();
 }
 
 async function submitNewCardForm(formInfo) {
@@ -132,6 +124,6 @@ async function setProfileInfo(formInfo) {
   if(newUserData) {
     userInfo.setUserInfo(newUserData.name, newUserData.about);
   }
-  
+
   editProfilePopup.close()
 }

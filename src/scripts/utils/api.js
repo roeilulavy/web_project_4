@@ -56,4 +56,17 @@ export default class Api {
       }
   }
 
+  async deleteCard(cardId) {
+    const response = await fetch(`${this._url}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: { authorization: this._token, },
+    })
+
+    if (response.ok) {
+      return response.json();
+    } else {
+      console.log('Somthing went wrong deleting card!', response.status, response.statusText);
+    }
+  }
+
 }
