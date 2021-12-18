@@ -1,13 +1,14 @@
 export default class Card {
-    constructor(cardData, cardSelector, onImageClick) {
+    constructor(cardData, cardSelector, onImageClick, onDeleteClick) {
         this._name = cardData.name;
         this._link = cardData.link;
         this._likes = cardData.likes;
+        this._id = cardData._id;
 
         this._cardSelector = cardSelector;
 
         this._onImageClick = onImageClick;
-
+        this._onDeleteClick = onDeleteClick;
         this._element;
     }
 
@@ -26,8 +27,10 @@ export default class Card {
     }
 
     _handleDeleteCard() {
-        this._element.remove();
-        this._element = null;
+        console.log('Delete?')
+
+        // this._element.remove();
+        // this._element = null;
     }
 
     _handlePreviewPicture() {

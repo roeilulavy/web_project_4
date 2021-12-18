@@ -8,6 +8,9 @@ export default class PopupWithForm extends Popup {
 
         this._popupForm = this._popup.querySelector('.popup__form');
         this._inputList = this._popup.querySelectorAll('.popup__input');
+    }
+
+    _handleDeleteCard() {
         
     }
 
@@ -27,7 +30,7 @@ export default class PopupWithForm extends Popup {
         });
     }
 
-    close() {        
+    close() {
         this._popupForm.reset();
         super.close();
     }
