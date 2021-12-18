@@ -28,7 +28,7 @@ export default class Card {
 
     _handleDeleteCard() {
         console.log('Delete?')
-
+        
         // this._element.remove();
         // this._element = null;
     }
