@@ -15,10 +15,12 @@ import {
   cardTemplate,
   placesElements,
   formSettings,
+  profileEditPicture,
   profileEditButton,
   profileAddButton,
   profileName,
   profileDescription,
+  popupEditProfilePicture,
   popupInputName,
   popupInputDescription
 } from '../scripts/utils/constants'
@@ -32,11 +34,13 @@ import profileImg from '../images/profile/profile.jpg'
 //Token: 03197c45-af19-4b1d-a978-69b8bedd3378 Group ID: group-12q
 
 headerLogo.src = logo
-profileImage.src = profileImg
+// profileImage.src = profileImg
 
+const editProfilePicturePopup = new PopupWithForm('.popup_type_edit-profile-picture', submitNewPicture);
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', setProfileInfo);
 const addNewCardPopup = new PopupWithForm('.popup_type_add-card', submitNewCardForm);
 const imagePopup = new PopupWithImage('.popup_type_image-preview');
+const profilePictureValidator = new FormValidator(formSettings, popupEditProfilePicture)
 const profileFormValidator = new FormValidator(formSettings, popupEditProfile)
 const cardFormValidator = new FormValidator(formSettings, popupAddCard)
 const userInfo = new UserInfo(profileName, profileDescription)
@@ -66,6 +70,8 @@ async function init() {
   ])
 
   userInfo.setUserInfo(userData.name, userData.about);
+  profileImage.src = userData.avatar;
+  console.log(userData.avatar)
 
   if (cards){
     cardSection.render(cards);
@@ -77,12 +83,12 @@ async function init() {
 
 function setEventListeners() {
   imagePopup.setEventListeners()
+  editProfilePicturePopup.setEventListeners()
   editProfilePopup.setEventListeners()
   addNewCardPopup.setEventListeners()
 
   profileEditButton.addEventListener('click', () => {
     editProfilePopup.open()
-
     getProfileInfo()
     profileFormValidator.resetValidation()
   })
@@ -91,11 +97,17 @@ function setEventListeners() {
     addNewCardPopup.open()
     cardFormValidator.resetValidation()
   })
+
+  profileEditPicture.addEventListener('click', () => {
+    editProfilePicturePopup.open();
+    profilePictureValidator.resetValidation();
+  })
 }
 
 function enableValidations() {
   cardFormValidator.enableValidation()
   profileFormValidator.enableValidation()
+  profilePictureValidator.enableValidation()
 }
 
 function createCard(cardInfo) {
@@ -119,11 +131,20 @@ function getProfileInfo() {
 }
 
 async function setProfileInfo(formInfo) {
-  console.log(formInfo);
   const newUserData = await api.editUserData(formInfo.name, formInfo.description);
   if(newUserData) {
     userInfo.setUserInfo(newUserData.name, newUserData.about);
   }
 
   editProfilePopup.close()
+}
+
+async function submitNewPicture(avatar) {
+  console.log(avatar.avatar);
+  const newProfilePictue = await api.editUserPicture(avatar.avatar);
+  if(newProfilePictue) {
+    profileImage.src = newProfilePictue;
+  }
+
+  editProfilePicturePopup.close();
 }

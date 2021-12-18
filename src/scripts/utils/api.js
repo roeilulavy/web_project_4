@@ -40,7 +40,21 @@ export default class Api {
     } else {
       console.log('Somthing went wrong updating user data!', response.status, response.statusText);
     }
-}
+  }
+
+  async editUserPicture(avatar) {
+    const response = await fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: { authorization: this._token, 'Content-Type': "application/json" },
+      body: JSON.stringify({avatar: avatar})
+    })
+
+    if (response.ok) {
+      return response.json();
+    } else {
+      console.log('Somthing went wrong updating user data!', response.status, response.statusText);
+    }
+  }
 
   async addCard(name, link) {
     const response = await fetch(`${this._url}/cards`, {

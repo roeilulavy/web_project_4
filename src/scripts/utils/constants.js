@@ -6,11 +6,13 @@ export const headerLogo = document.querySelector('.header__logo');
 export const profileImage = document.querySelector('.profile__profile-image');
 
 //Popups
+export const popupEditProfilePicture = document.querySelector('.popup_type_edit-profile-picture');
 export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 export const popupAddCard = document.querySelector('.popup_type_add-card');
 export const popupDeleteCard = document.querySelector('.popup_type_delete-card');
 
 //Buttons
+export const profileEditPicture = document.querySelector('.profile__edit-picture');
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileAddButton = document.querySelector('.profile__add-button');
 
