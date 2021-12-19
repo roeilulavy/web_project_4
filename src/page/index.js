@@ -29,12 +29,7 @@ import '../page/index.css'
 
 //Images
 import logo from '../images/logo/logo.svg'
-// import profileImg from '../images/profile/profile.jpg'
-
-//Token: 03197c45-af19-4b1d-a978-69b8bedd3378 Group ID: group-12q
-
 headerLogo.src = logo
-// profileImage.src = profileImg
 
 const editProfilePicturePopup = new PopupWithForm('.popup_type_edit-profile-picture', submitNewPicture);
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', setProfileInfo);
@@ -60,6 +55,7 @@ const cardSection = new Section(
   placesElements
 )
 
+export let ownerId = '';
 
 init()
 
@@ -70,9 +66,10 @@ async function init() {
   ])
 
   userInfo.setUserInfo(userData.name, userData.about);
+  ownerId = userData._id;
   profileImage.src = userData.avatar;
 
-  if (cards){
+  if(cards) {
     cardSection.render(cards);
   }
 
@@ -134,7 +131,6 @@ async function setProfileInfo(formInfo) {
   if(newUserData) {
     userInfo.setUserInfo(newUserData.name, newUserData.about);
   }
-
   editProfilePopup.close()
 }
 

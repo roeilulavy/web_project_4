@@ -1,6 +1,3 @@
-export const cardTemplate = '#element-template';
-export const placesElements = '.elements';
-
 //Images
 export const headerLogo = document.querySelector('.header__logo');
 export const profileImage = document.querySelector('.profile__profile-image');
@@ -17,6 +14,8 @@ export const profileEditButton = document.querySelector('.profile__edit-button')
 export const profileAddButton = document.querySelector('.profile__add-button');
 
 //DOM Elements
+export const cardTemplate = '#element-template';
+export const placesElements = '.elements';
 export const profileName = document.querySelector('.profile__title');
 export const profileDescription = document.querySelector('.profile__description');
 export const popupInputName = document.querySelector('.popup__input_type_name');

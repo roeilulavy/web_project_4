@@ -1,9 +1,12 @@
+import { ownerId } from "../../page";
+
 export default class Card {
     constructor(cardData, cardSelector, onImageClick, onDeleteClick) {
         this._name = cardData.name;
         this._link = cardData.link;
         this._likes = cardData.likes;
-        this._id = cardData._id;
+        this._cardId = cardData._id;
+        this._ownerId = cardData.owner._id;
 
         this._cardSelector = cardSelector;
 
@@ -47,6 +50,10 @@ export default class Card {
         cardImage.alt = this._name;
         this._element.querySelector('.elements__caption').textContent = this._name;
         this._element.querySelector('.elements__like-counter').textContent = likesCount.length;
+
+        if(this._ownerId !== ownerId) {
+            deleteButton.style.display = 'none';
+        }
 
         likeButton.addEventListener('click', this._handleLikeIcon);
         deleteButton.addEventListener('click', () => this._handleDeleteCard());
