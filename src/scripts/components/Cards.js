@@ -1,5 +1,6 @@
 import { ownerId } from "../../page";
 import { deleteCardConfirm } from "../../page";
+import Api from "../utils/api";
 
 export default class Card {
     constructor(cardData, cardSelector, onImageClick) {
@@ -12,7 +13,9 @@ export default class Card {
         this._cardSelector = cardSelector;
 
         this._onImageClick = onImageClick;
+
         this._element;
+        this._likeButton = document.querySelector('.elements__like-button');
     }
 
     _getTemplate() {
@@ -25,7 +28,16 @@ export default class Card {
         return cardElement;
     }
 
-    _handleLikeIcon(evt) {
+    _getLikeStatus() {
+        this._likes.forEach((like) => {
+            if(like._id === ownerId) {
+                this._likeButton.classList.add(`elements__like-button_active`);
+            }
+        })
+    }
+
+    _handleLikeClick(evt) {
+        console.log('Like Clicked');
         evt.target.classList.toggle(`elements__like-button_active`);
     }
 
@@ -56,7 +68,7 @@ export default class Card {
             deleteButton.style.display = 'none';
         }
 
-        likeButton.addEventListener('click', this._handleLikeIcon);
+        likeButton.addEventListener('click', this._handleLikeClick);
         deleteButton.addEventListener('click', () => this._handleDeleteCard());
         cardImage.addEventListener('click', () => this._handlePreviewPicture());
     }
@@ -64,6 +76,7 @@ export default class Card {
     render() {
         this._element = this._getTemplate();
         this._addEventListeners();
+        this._getLikeStatus();
 
         return this._element;
     }
