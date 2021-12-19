@@ -43,7 +43,7 @@ export default class Api {
   }
 
   async editUserPicture(avatar) {
-    const response = await fetch(`${this._url}/users/me`, {
+    const response = await fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: { authorization: this._token, 'Content-Type': "application/json" },
       body: JSON.stringify({avatar: avatar})

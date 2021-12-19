@@ -29,7 +29,7 @@ import '../page/index.css'
 
 //Images
 import logo from '../images/logo/logo.svg'
-import profileImg from '../images/profile/profile.jpg'
+// import profileImg from '../images/profile/profile.jpg'
 
 //Token: 03197c45-af19-4b1d-a978-69b8bedd3378 Group ID: group-12q
 
@@ -71,7 +71,6 @@ async function init() {
 
   userInfo.setUserInfo(userData.name, userData.about);
   profileImage.src = userData.avatar;
-  console.log(userData.avatar)
 
   if (cards){
     cardSection.render(cards);
@@ -143,8 +142,8 @@ async function submitNewPicture(avatar) {
   console.log(avatar.avatar);
   const newProfilePictue = await api.editUserPicture(avatar.avatar);
   if(newProfilePictue) {
-    profileImage.src = newProfilePictue;
+    const userData = await api.getUserData();
+    profileImage.src = userData.avatar;
   }
-
   editProfilePicturePopup.close();
 }
