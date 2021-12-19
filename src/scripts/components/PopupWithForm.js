@@ -8,10 +8,8 @@ export default class PopupWithForm extends Popup {
 
         this._popupForm = this._popup.querySelector('.popup__form');
         this._inputList = this._popup.querySelectorAll('.popup__input');
-    }
 
-    _handleDeleteCard() {
-        
+        this._deletePopup = document.querySelector('.popup_type_delete-card');
     }
 
     _getInputValues() {
@@ -26,12 +24,18 @@ export default class PopupWithForm extends Popup {
 
         this._popup.addEventListener('submit', (event) => {
             event.preventDefault();
-            this._submission(this._getInputValues());
+            if(this._popup !== this._deletePopup){
+                this._submission(this._getInputValues());   
+            } else {
+                this._submission();
+            }
         });
     }
 
     close() {
-        this._popupForm.reset();
         super.close();
+        if(this._popup !== this._deletePopup){
+           this._popupForm.reset();  
+        } 
     }
 }

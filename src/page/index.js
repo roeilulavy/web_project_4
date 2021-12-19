@@ -34,6 +34,7 @@ headerLogo.src = logo
 const editProfilePicturePopup = new PopupWithForm('.popup_type_edit-profile-picture', submitNewPicture);
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', setProfileInfo);
 const addNewCardPopup = new PopupWithForm('.popup_type_add-card', submitNewCardForm);
+const deleteCardPopup = new PopupWithForm('.popup_type_delete-card', deleteCard);
 const imagePopup = new PopupWithImage('.popup_type_image-preview');
 const profilePictureValidator = new FormValidator(formSettings, popupEditProfilePicture)
 const profileFormValidator = new FormValidator(formSettings, popupEditProfile)
@@ -82,6 +83,7 @@ function setEventListeners() {
   editProfilePicturePopup.setEventListeners()
   editProfilePopup.setEventListeners()
   addNewCardPopup.setEventListeners()
+  deleteCardPopup.setEventListeners()
 
   profileEditButton.addEventListener('click', () => {
     editProfilePopup.open()
@@ -120,6 +122,24 @@ async function submitNewCardForm(formInfo) {
   addNewCardPopup.close()
 }
 
+
+export function deleteCardConfirm(cardId) {
+  deleteCardPopup.open();
+}
+
+function deleteCard(cardInfo) {
+  console.log('Deleted Success!');
+  console.log(cardInfo)
+  deleteCardPopup.close();
+}
+// export async function deleteCard(cardInfo) {
+//   const card = await api.deleteCard(cardInfo);
+
+//   if(card) {
+//     console.log('Deleted Success!');
+//   }
+// }
+
 function getProfileInfo() {
   const userData = userInfo.getUserInfo()
   popupInputName.value = userData.name
@@ -128,6 +148,7 @@ function getProfileInfo() {
 
 async function setProfileInfo(formInfo) {
   const newUserData = await api.editUserData(formInfo.name, formInfo.description);
+
   if(newUserData) {
     userInfo.setUserInfo(newUserData.name, newUserData.about);
   }
@@ -135,8 +156,8 @@ async function setProfileInfo(formInfo) {
 }
 
 async function submitNewPicture(avatar) {
-  console.log(avatar.avatar);
   const newProfilePictue = await api.editUserPicture(avatar.avatar);
+
   if(newProfilePictue) {
     const userData = await api.getUserData();
     profileImage.src = userData.avatar;

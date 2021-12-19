@@ -1,7 +1,8 @@
 import { ownerId } from "../../page";
+import { deleteCardConfirm } from "../../page";
 
 export default class Card {
-    constructor(cardData, cardSelector, onImageClick, onDeleteClick) {
+    constructor(cardData, cardSelector, onImageClick) {
         this._name = cardData.name;
         this._link = cardData.link;
         this._likes = cardData.likes;
@@ -11,7 +12,6 @@ export default class Card {
         this._cardSelector = cardSelector;
 
         this._onImageClick = onImageClick;
-        this._onDeleteClick = onDeleteClick;
         this._element;
     }
 
@@ -31,7 +31,8 @@ export default class Card {
 
     _handleDeleteCard() {
         console.log('Delete?')
-        
+        deleteCardConfirm(this._cardId);
+
         // this._element.remove();
         // this._element = null;
     }
