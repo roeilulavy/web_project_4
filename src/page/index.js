@@ -25,7 +25,6 @@ import {
   popupInputName,
   popupInputDescription
 } from '../scripts/utils/constants'
-
 import '../page/index.css'
 
 //Images
@@ -110,6 +109,12 @@ function enableValidations() {
   profilePictureValidator.enableValidation()
 }
 
+function getProfileInfo() {
+  const userData = userInfo.getUserInfo()
+  popupInputName.value = userData.name
+  popupInputDescription.value = userData.description
+}
+
 function createCard(cardInfo) {
   return new Card(cardInfo, cardTemplate, imagePopup.open, like, dislike).render();
 }
@@ -143,12 +148,6 @@ async function deleteCard(cardId) {
   if(deleteCard){
     console.log(deleteCard);
   }
-}
-
-function getProfileInfo() {
-  const userData = userInfo.getUserInfo()
-  popupInputName.value = userData.name
-  popupInputDescription.value = userData.description
 }
 
 async function setProfileInfo(formInfo) {
