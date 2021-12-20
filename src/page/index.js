@@ -5,6 +5,7 @@ import Section from '../scripts/components/Section'
 import Card from '../scripts/components/Cards'
 import PopupWithImage from '../scripts/components/PopupWithImage'
 import PopupWithForm from '../scripts/components/PopupWithForm'
+import PopupDeleteCard from "../scripts/components/popupDeleteCard";
 import UserInfo from '../scripts/components/UserInfo'
 import FormValidator from '../scripts/components/FormValidator'
 import {
@@ -34,7 +35,8 @@ headerLogo.src = logo
 const editProfilePicturePopup = new PopupWithForm('.popup_type_edit-profile-picture', submitNewPicture);
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', setProfileInfo);
 const addNewCardPopup = new PopupWithForm('.popup_type_add-card', submitNewCardForm);
-const deleteCardPopup = new PopupWithForm('.popup_type_delete-card', deleteCard);
+const deleteCardPopup = new PopupDeleteCard('.popup_type_delete-card', deleteCard);
+export {deleteCardPopup};
 const imagePopup = new PopupWithImage('.popup_type_image-preview');
 const profilePictureValidator = new FormValidator(formSettings, popupEditProfilePicture)
 const profileFormValidator = new FormValidator(formSettings, popupEditProfile)
@@ -109,7 +111,7 @@ function enableValidations() {
 }
 
 function createCard(cardInfo) {
-  return new Card(cardInfo, cardTemplate, imagePopup.open).render();
+  return new Card(cardInfo, cardTemplate, imagePopup.open, like, dislike).render();
 }
 
 async function submitNewCardForm(formInfo) {
@@ -122,23 +124,26 @@ async function submitNewCardForm(formInfo) {
   addNewCardPopup.close()
 }
 
-
-export function deleteCardConfirm(cardId) {
-  deleteCardPopup.open();
+async function like(cardId) {
+  const like = await api.likeCard(cardId);
+  if(like){
+    return like.likes;
+  }
 }
 
-function deleteCard(cardInfo) {
-  console.log('Deleted Success!');
-  console.log(cardInfo)
-  deleteCardPopup.close();
+async function dislike(cardId) {
+  const dislike = await api.dislikeCard(cardId);
+  if(dislike){
+    return dislike.likes;
+  }
 }
-// export async function deleteCard(cardInfo) {
-//   const card = await api.deleteCard(cardInfo);
 
-//   if(card) {
-//     console.log('Deleted Success!');
-//   }
-// }
+async function deleteCard(cardId) {
+  const deleteCard = await api.deleteCard(cardId);
+  if(deleteCard){
+    console.log(deleteCard);
+  }
+}
 
 function getProfileInfo() {
   const userData = userInfo.getUserInfo()
