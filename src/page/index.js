@@ -123,54 +123,84 @@ function createCard(cardInfo) {
 }
 
 async function submitNewCardForm(formInfo) {
-  const card = await api.addCard(formInfo.name, formInfo.link);
+  try {
+    const card = await api.addCard(formInfo.name, formInfo.link);
 
-  if(card){
-    popupAddCard.querySelector('.popup__submit').textContent = 'Success!';
-    const cardElement = createCard(card)
-    cardSection.addItem(cardElement)
+    if(card){
+      popupAddCard.querySelector('.popup__submit').textContent = 'Success!';
+      const cardElement = createCard(card)
+      cardSection.addItem(cardElement)
+    }
+  } catch(e) {
+    popupAddCard.querySelector('.popup__submit').textContent = 'Failed!';
+    console.log("something went wrong..", e);
   }
+  
   addNewCardPopup.close()
 }
 
 async function like(cardId) {
-  const like = await api.likeCard(cardId);
-  if(like){
-    return like.likes;
+  try {
+    const like = await api.likeCard(cardId);
+    if(like){
+      return like.likes;
+    }
+  } catch(e) {
+    console.log("something went wrong..", e);
   }
 }
 
 async function dislike(cardId) {
-  const dislike = await api.dislikeCard(cardId);
-  if(dislike){
-    return dislike.likes;
+  try {
+    const dislike = await api.dislikeCard(cardId);
+    if(dislike){
+      return dislike.likes;
+    }
+  } catch(e) {
+    console.log("something went wrong..", e);
   }
 }
 
 async function deleteCard(cardId) {
-  const deleteCard = await api.deleteCard(cardId);
-  if(deleteCard){
-    console.log(deleteCard);
+  try {
+    const deleteCard = await api.deleteCard(cardId);
+    if(deleteCard){
+      console.log(deleteCard);
+    }
+  } catch(e) {
+    console.log("something went wrong..", e);
   }
 }
 
 async function setProfileInfo(formInfo) {
-  const newUserData = await api.editUserData(formInfo.name, formInfo.description);
+  try {
+    const newUserData = await api.editUserData(formInfo.name, formInfo.description);
 
-  if(newUserData) {
-    popupEditProfile.querySelector('.popup__submit').textContent = 'Success!';
-    userInfo.setUserInfo(newUserData.name, newUserData.about);
+    if(newUserData) {
+      popupEditProfile.querySelector('.popup__submit').textContent = 'Success!';
+      userInfo.setUserInfo(newUserData.name, newUserData.about);
+    }
+  } catch(e) {
+    popupEditProfile.querySelector('.popup__submit').textContent = 'Failed!';
+    console.log("something went wrong..", e);
   }
+  
   editProfilePopup.close()
 }
 
 async function submitNewPicture(avatar) {
-  const newProfilePictue = await api.editUserPicture(avatar.avatar);
+  try {
+    const newProfilePictue = await api.editUserPicture(avatar.avatar);
 
-  if(newProfilePictue) {
-    popupEditProfilePicture.querySelector('.popup__submit').textContent = 'Success!';
-    const userData = await api.getUserData();
-    profileImage.src = userData.avatar;
+    if(newProfilePictue) {
+      popupEditProfilePicture.querySelector('.popup__submit').textContent = 'Success!';
+      const userData = await api.getUserData();
+      profileImage.src = userData.avatar;
+    }
+  } catch(e) {
+    popupEditProfilePicture.querySelector('.popup__submit').textContent = 'Failed!';
+    console.log("something went wrong..", e);
   }
+  
   editProfilePicturePopup.close();
 }
