@@ -84,7 +84,7 @@ export default class Api {
   }
 
   async likeCard(cardId) {
-    const response = await fetch(`${this._url}/cards/${cardId}`, {
+    const response = await fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'PUT',
       headers: { authorization: this._token, },
     })
@@ -97,7 +97,7 @@ export default class Api {
   }
 
   async dislikeCard(cardId) {
-    const response = await fetch(`${this._url}/cards/${cardId}`, {
+    const response = await fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: { authorization: this._token, },
     })

@@ -16,7 +16,6 @@ export default class Card {
         this._dislike = dislike;
 
         this._element;
-        this._likeButton = document.querySelector('.elements__like-button');
     }
 
     _getTemplate() {
@@ -29,17 +28,17 @@ export default class Card {
         return cardElement;
     }
 
-    _getLikeStatus() {
+    _getUserLikeStatus() {
         this._likes.forEach((like) => {
             if(like._id === ownerId) {
-                this._likeButton.classList.add(`elements__like-button_active`);
+                this._element.querySelector('.elements__like-button').classList.add(`elements__like-button_active`);
             }
         })
     }
 
-    _getLikeCount() {
-        const likesCount = this._likes;
-        this._element.querySelector('.elements__like-counter').textContent = likesCount.length;
+    _getLikeCount(likes) {
+        const likesCount = likes.length;
+        this._element.querySelector('.elements__like-counter').textContent = likesCount;
     }
 
     // _handleLikeClick(evt) {
@@ -71,6 +70,7 @@ export default class Card {
         cardImage.src = this._link;
         cardImage.alt = this._name;
         this._element.querySelector('.elements__caption').textContent = this._name;
+        this._element.querySelector('.elements__like-counter').textContent = this._likes.length;
 
         if(this._ownerId !== ownerId) {
             deleteButton.style.display = 'none';
@@ -82,30 +82,27 @@ export default class Card {
 
 
         likeButton.addEventListener('click', async (evt) => {
+            evt.preventDefault();
             if(!likeButton.classList.contains(`elements__like-button_active`)){
-                console.log('Like Activated')
                 const like = await this._like(this._cardId);
                 if(like){
-                    evt.target.classList.toggle(`elements__like-button_active`);
-                    this._getLikeCount();
+                    evt.target.classList.add(`elements__like-button_active`);
+                    this._getLikeCount(like);
                 }
             } else {
-                console.log('Like Deactivated')
                 const dislike = await this._dislike(this._cardId);
                 if(dislike){
-                    evt.target.classList.toggle(`elements__like-button_active`);
-                    this._getLikeCount();
+                    evt.target.classList.remove(`elements__like-button_active`);
+                    this._getLikeCount(dislike);
                 }
             }
-            console.log('Like func Done!')
         });
     }
 
     render() {
         this._element = this._getTemplate();
         this._addEventListeners();
-        this._getLikeCount();
-        this._getLikeStatus();
+        this._getUserLikeStatus();
 
         return this._element;
     }
