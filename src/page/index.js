@@ -35,7 +35,6 @@ const editProfilePicturePopup = new PopupWithForm('.popup_type_edit-profile-pict
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', setProfileInfo);
 const addNewCardPopup = new PopupWithForm('.popup_type_add-card', submitNewCardForm);
 const deleteCardPopup = new PopupDeleteCard('.popup_type_delete-card', deleteCard);
-export {deleteCardPopup};
 const imagePopup = new PopupWithImage('.popup_type_image-preview');
 const profilePictureValidator = new FormValidator(formSettings, popupEditProfilePicture)
 const profileFormValidator = new FormValidator(formSettings, popupEditProfile)
@@ -57,8 +56,6 @@ const cardSection = new Section(
   placesElements
 )
 
-export let ownerId = '';
-
 init()
 
 async function init() {
@@ -68,7 +65,7 @@ async function init() {
   ])
 
   userInfo.setUserInfo(userData.name, userData.about);
-  ownerId = userData._id;
+  // ownerId = userData._id;
   profileImage.src = userData.avatar;
 
   if(cards) {
@@ -119,7 +116,14 @@ function getProfileInfo() {
 }
 
 function createCard(cardInfo) {
-  return new Card(cardInfo, cardTemplate, imagePopup.open, like, dislike, deleteCard).render();
+  return new Card(
+    cardInfo,
+    cardTemplate,
+    imagePopup.open,
+    like,
+    dislike,
+    handleDeleteCard
+    ).render();
 }
 
 async function submitNewCardForm(formInfo) {
@@ -159,6 +163,12 @@ async function dislike(cardId) {
   } catch(e) {
     console.log("something went wrong..", e);
   }
+}
+
+function handleDeleteCard(){
+// //   console.log('handleDeleteCard')
+//   console.log(cardElement, cardId)
+  deleteCardPopup.open();
 }
 
 async function deleteCard(cardId) {
