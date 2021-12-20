@@ -55,7 +55,6 @@ export default class Card {
     // }
 
     _handleDeleteCard() {
-        console.log('Delete?')
         deleteCardPopup.open(this._element, this._cardId);
     }
 
