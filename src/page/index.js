@@ -88,17 +88,20 @@ function setEventListeners() {
 
   profileEditButton.addEventListener('click', () => {
     editProfilePopup.open()
+    popupEditProfile.querySelector('.popup__submit').textContent = 'Save';
     getProfileInfo()
     profileFormValidator.resetValidation()
   })
 
   profileAddButton.addEventListener('click', () => {
     addNewCardPopup.open()
+    popupAddCard.querySelector('.popup__submit').textContent = 'Create';
     cardFormValidator.resetValidation()
   })
 
   profileEditPicture.addEventListener('click', () => {
     editProfilePicturePopup.open();
+    popupEditProfilePicture.querySelector('.popup__submit').textContent = 'Save';
     profilePictureValidator.resetValidation();
   })
 }
@@ -116,13 +119,14 @@ function getProfileInfo() {
 }
 
 function createCard(cardInfo) {
-  return new Card(cardInfo, cardTemplate, imagePopup.open, like, dislike).render();
+  return new Card(cardInfo, cardTemplate, imagePopup.open, like, dislike, deleteCard).render();
 }
 
 async function submitNewCardForm(formInfo) {
   const card = await api.addCard(formInfo.name, formInfo.link);
 
   if(card){
+    popupAddCard.querySelector('.popup__submit').textContent = 'Success!';
     const cardElement = createCard(card)
     cardSection.addItem(cardElement)
   }
@@ -154,6 +158,7 @@ async function setProfileInfo(formInfo) {
   const newUserData = await api.editUserData(formInfo.name, formInfo.description);
 
   if(newUserData) {
+    popupEditProfile.querySelector('.popup__submit').textContent = 'Success!';
     userInfo.setUserInfo(newUserData.name, newUserData.about);
   }
   editProfilePopup.close()
@@ -163,6 +168,7 @@ async function submitNewPicture(avatar) {
   const newProfilePictue = await api.editUserPicture(avatar.avatar);
 
   if(newProfilePictue) {
+    popupEditProfilePicture.querySelector('.popup__submit').textContent = 'Success!';
     const userData = await api.getUserData();
     profileImage.src = userData.avatar;
   }

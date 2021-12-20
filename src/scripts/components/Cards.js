@@ -2,7 +2,7 @@ import { ownerId } from "../../page";
 import { deleteCardPopup } from "../../page";
 
 export default class Card {
-    constructor(cardData, cardSelector, onImageClick, like, dislike) {
+    constructor(cardData, cardSelector, onImageClick, like, dislike, deleteCard) {
         this._name = cardData.name;
         this._link = cardData.link;
         this._likes = cardData.likes;
@@ -14,6 +14,7 @@ export default class Card {
         this._onImageClick = onImageClick;
         this._like = like;
         this._dislike = dislike;
+        this._deleteCard = deleteCard;
 
         this._element;
     }

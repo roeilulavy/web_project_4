@@ -8,8 +8,7 @@ export default class PopupWithForm extends Popup {
 
         this._popupForm = this._popup.querySelector('.popup__form');
         this._inputList = this._popup.querySelectorAll('.popup__input');
-
-        this._deletePopup = document.querySelector('.popup_type_delete-card');
+        this._submitButton = this._popup.querySelector('.popup__submit');
     }
 
     _getInputValues() {
@@ -24,11 +23,9 @@ export default class PopupWithForm extends Popup {
 
         this._popup.addEventListener('submit', (event) => {
             event.preventDefault();
-            if(this._popup !== this._deletePopup){
-                this._submission(this._getInputValues());   
-            } else {
-                this._submission();
-            }
+            this._submitButton.textContent = 'Saving...';
+
+            this._submission(this._getInputValues()); 
         });
     }
 
