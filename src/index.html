@@ -17,7 +17,10 @@
     <main class="content">
 
       <section class="profile">
-        <img class="profile__profile-image" alt="User profile picture" />
+        <div class="profile__profile-holder">
+          <img class="profile__profile-image" alt="User profile picture" />
+          <button type="button" class="profile__edit-picture"></button>
+        </div>
         <div class="profile__profile-info">
           <h1 class="profile__title">Jacques Cousteau</h1>
           <button type="button" class="profile__edit-button"></button>
@@ -45,6 +48,19 @@
         </div>
       </div>
 
+      <div class="popup popup_type_edit-profile-picture">
+        <div class="popup__content">
+          <button type="button" class="popup__close"></button>
+          <h3 class="popup__title">Cange profile picture</h3>
+          <form class="popup__form" id="edit-profile-picture" name="edit-profile-picture">
+            <input id="input_type_url" type="url" name="avatar" class="popup__input popup__input_type_avatar-link"
+              placeholder="Image link" required>
+            <span id="input_type_url-error" class="popup__error"></span>
+            <button type="submit" class="popup__submit popup__submit_type_disable">Save</button>
+          </form>
+        </div>
+      </div>
+
       <div class="popup popup_type_add-card">
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
@@ -66,6 +82,16 @@
           <button type="button" class="popup__close"></button>
           <img class="popup__image" alt="">
           <figure class="popup__figure"></figure>
+        </div>
+      </div>
+
+      <div class="popup popup_type_delete-card">
+        <div class="popup__content">
+          <button type="button" class="popup__close"></button>
+          <h3 class="popup__title">Are you sure?</h3>
+          <form class="popup__form" id="delete-card" name="delete-card">
+           <button type="submit" class="popup__submit">Delete</button> 
+          </form>
         </div>
       </div>
     </main>
