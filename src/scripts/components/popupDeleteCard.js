@@ -1,26 +1,25 @@
-import Popup from "./Popup.js";
+import Popup from './Popup.js'
 
 export default class PopupDeleteCard extends Popup {
-    constructor(popupSelector, deleteCard) {
-        super(popupSelector);
-        this._deleteCard = deleteCard;
+  constructor (popupSelector, deleteCard) {
+    super(popupSelector)
+    this._deleteCard = deleteCard
+  }
 
-    }
+  setEventListeners () {
+    super.setEventListeners()
+  }
 
-    setEventListeners() {
-        super.setEventListeners();
-    }
+  close () {
+    super.close()
+  }
 
-    close() {
-        super.close();
-    }
-
-    open(cardElement, cardId) {
-        super.open();
-
-        this._popup.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-            this._deleteCard(cardElement, cardId);
-        })
-    }
+  open (cardElement, cardId) {
+    super.open()
+    
+    this._popup.addEventListener('submit', evt => {
+      evt.preventDefault()
+      this._deleteCard(cardElement, cardId)
+    })
+  }
 }

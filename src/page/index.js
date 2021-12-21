@@ -165,7 +165,7 @@ async function dislike(cardId) {
 }
 
 function handleDeleteCard(cardElement, cardId){
-  deleteCardPopup.open(cardElement, cardId);
+  deleteCardPopup.open(cardElement, cardId)
 }
 
 async function deleteCard(cardElement, cardId) {
@@ -173,8 +173,6 @@ async function deleteCard(cardElement, cardId) {
     const deleteCard = await api.deleteCard(cardId);
     if(deleteCard){
       cardElement.remove();
-      cardElement = null;
-      console.log(deleteCard);
     }
   } catch(e) {
     console.log("something went wrong..", e);
