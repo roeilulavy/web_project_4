@@ -65,7 +65,6 @@ async function init() {
   ])
 
   userInfo.setUserInfo(userData.name, userData.about);
-  // ownerId = userData._id;
   profileImage.src = userData.avatar;
 
   if(cards) {
@@ -165,21 +164,22 @@ async function dislike(cardId) {
   }
 }
 
-function handleDeleteCard(){
-// //   console.log('handleDeleteCard')
-//   console.log(cardElement, cardId)
-  deleteCardPopup.open();
+function handleDeleteCard(cardElement, cardId){
+  deleteCardPopup.open(cardElement, cardId);
 }
 
-async function deleteCard(cardId) {
+async function deleteCard(cardElement, cardId) {
   try {
     const deleteCard = await api.deleteCard(cardId);
     if(deleteCard){
+      cardElement.remove();
+      cardElement = null;
       console.log(deleteCard);
     }
   } catch(e) {
     console.log("something went wrong..", e);
   }
+  deleteCardPopup.close();
 }
 
 async function setProfileInfo(formInfo) {

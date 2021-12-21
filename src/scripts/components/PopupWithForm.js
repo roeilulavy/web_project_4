@@ -31,8 +31,6 @@ export default class PopupWithForm extends Popup {
 
     close() {
         super.close();
-        if(this._popup !== this._deletePopup){
-           this._popupForm.reset();  
-        } 
+        this._popupForm.reset(); 
     }
 }

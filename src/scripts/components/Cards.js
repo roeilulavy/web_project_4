@@ -42,7 +42,7 @@ export default class Card {
     // _handleLikeClick(evt) {
     //     console.log('like clicked')
     //     const likeButton = document.querySelector('.elements__like-button');
-        
+    // 
     //     if(!likeButton.classList.contains(`elements__like-button_active`)){
     //         console.log('Like Activated')
     //     } else {   
@@ -51,9 +51,11 @@ export default class Card {
     //     evt.target.classList.toggle(`elements__like-button_active`);
     // }
 
-    _handleDeleteCard() {
+    // _handleDeleteCard() {
+        // this._element.remove();
+        // this._element = null;
         // deleteCardPopup.open(this._element, this._cardId);
-    }
+    // }
 
     _handlePreviewPicture() {
         this._onImageClick({ link: this._link, name: this._name });
@@ -74,7 +76,7 @@ export default class Card {
         }
 
         // likeButton.addEventListener('click', this._handleLikeClick);
-        deleteButton.addEventListener('click', () => this._handleDeleteCard());
+        // deleteButton.addEventListener('click', () => this._handleDeleteCard());
         cardImage.addEventListener('click', () => this._handlePreviewPicture());
 
 
@@ -92,6 +94,14 @@ export default class Card {
                     evt.target.classList.remove(`elements__like-button_active`);
                     this._getLikeCount(dislike);
                 }
+            }
+        });
+
+        deleteButton.addEventListener('click', async (evt) => {
+            evt.preventDefault();
+            const deleteCard = await this._handleDeleteCard(this._element, this._cardId);
+            if(deleteCard){
+                return deleteCard;
             }
         });
     }
