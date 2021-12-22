@@ -8,10 +8,8 @@ export default class PopupDeleteCard extends Popup {
 
   setEventListeners () {
     super.setEventListeners()
-  }
 
-  close () {
-    super.close()
+    
   }
 
   open (cardElement, cardId) {

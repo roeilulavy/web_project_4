@@ -5,7 +5,7 @@ import Section from '../scripts/components/Section'
 import Card from '../scripts/components/Cards'
 import PopupWithImage from '../scripts/components/PopupWithImage'
 import PopupWithForm from '../scripts/components/PopupWithForm'
-import PopupDeleteCard from '../scripts/components/popupDeleteCard'
+import PopupDeleteCard from '../scripts/components/PopupDeleteCard'
 import UserInfo from '../scripts/components/UserInfo'
 import FormValidator from '../scripts/components/FormValidator'
 import {
