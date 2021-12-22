@@ -11,18 +11,20 @@
   <div class="page__wrapper">
 
     <header class="header">
-      <img class="header__logo" src="c75819857ff1599f0c50.svg" alt="Around the U.S logo" />
+      <img class="header__logo" alt="Around the U.S logo" />
     </header>
 
     <main class="content">
 
       <section class="profile">
-        <img class="profile__profile-image" src="cf3e559fb3fd2192b151.jpg"
-          alt="User profile picture" />
+        <div class="profile__profile-holder">
+          <img class="profile__profile-image" alt="User profile picture" />
+          <button type="button" class="profile__edit-picture"></button>
+        </div>
         <div class="profile__profile-info">
-          <h1 class="profile__title">Jacques Cousteau</h1>
+          <h1 class="profile__title"></h1>
           <button type="button" class="profile__edit-button"></button>
-          <p class="profile__description">Explorer</p>
+          <p class="profile__description"></p>
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
@@ -46,15 +48,28 @@
         </div>
       </div>
 
+      <div class="popup popup_type_edit-profile-picture">
+        <div class="popup__content">
+          <button type="button" class="popup__close"></button>
+          <h3 class="popup__title">Cange profile picture</h3>
+          <form class="popup__form" id="edit-profile-picture" name="edit-profile-picture">
+            <input id="input_type_url" type="url" name="avatar" class="popup__input popup__input_type_avatar-link"
+              placeholder="Image link" required>
+            <span id="input_type_url-error" class="popup__error"></span>
+            <button type="submit" class="popup__submit popup__submit_type_disable">Save</button>
+          </form>
+        </div>
+      </div>
+
       <div class="popup popup_type_add-card">
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">New Place</h3>
           <form class="popup__form" id="add-card-form" name="new-card_info">
-            <input id="input_type_title" type="text" name="card-name" class="popup__input popup__input_type_card-name"
-              placeholder="Title" minlength="1" maxlength="30" required>
+            <input id="input_type_title" type="text" name="name" class="popup__input popup__input_type_card-name"
+              placeholder="Title" minlength="1" maxlength="30" autocomplete="off" required>
             <span id="input_type_title-error" class="popup__error popup__error_visible"></span>
-            <input id="input_type_url" type="url" name="card-link" class="popup__input popup__input_type_card-link"
+            <input id="input_type_url" type="url" name="link" class="popup__input popup__input_type_card-link"
               placeholder="Image link" required>
             <span id="input_type_url-error" class="popup__error"></span>
             <button type="submit" class="popup__submit popup__submit_type_disable">Create</button>
@@ -65,8 +80,18 @@
       <div class="popup popup_type_image-preview">
         <div class="popup__content-wrapper">
           <button type="button" class="popup__close"></button>
-          <img class="popup__image" src="" alt="">
+          <img class="popup__image" alt="">
           <figure class="popup__figure"></figure>
+        </div>
+      </div>
+
+      <div class="popup popup_type_delete-card">
+        <div class="popup__content">
+          <button type="button" class="popup__close"></button>
+          <h3 class="popup__title">Are you sure?</h3>
+          <form class="popup__form" id="delete-card" name="delete-card">
+           <button type="submit" class="popup__submit">Delete</button> 
+          </form>
         </div>
       </div>
     </main>
@@ -78,11 +103,14 @@
 
   <template id="element-template">
     <article class="elements__element">
-      <img class="elements__image" src="" alt="">
+      <img class="elements__image" alt="">
       <button type="button" class="elements__delete-button" name="delete-button"></button>
       <div class="elements__holder">
         <h2 class="elements__caption"></h2>
-        <button type="button" class="elements__like-button"></button>
+        <div class="elements__like-wrapper">
+          <button type="button" class="elements__like-button"></button>
+          <p class="elements__like-counter">0</p>
+        </div>
       </div>
     </article>
   </template>
