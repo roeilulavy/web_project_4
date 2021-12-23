@@ -44,8 +44,7 @@ const addNewCardPopup = new PopupWithForm(
   submitNewCardForm
 )
 const deleteCardPopup = new PopupDeleteCard(
-  '.popup_type_delete-card',
-  deleteCard
+  '.popup_type_delete-card'
 )
 const imagePopup = new PopupWithImage('.popup_type_image-preview')
 const profilePictureValidator = new FormValidator(
@@ -80,8 +79,13 @@ async function init () {
       api.getInitialCards()
     ])
 
-    userInfo.setUserInfo(userData.name, userData.about, profileImage.src = userData.avatar, userData._id)
-    
+    userInfo.setUserInfo(
+      userData.name,
+      userData.about,
+      (profileImage.src = userData.avatar),
+      userData._id
+    )
+
     if (cards) {
       cardSection.render(cards)
       setEventListeners()
@@ -182,19 +186,18 @@ async function dislike (cardId) {
 }
 
 function handleDeleteCard (cardElement, cardId) {
-  deleteCardPopup.open(cardElement, cardId)
-}
-
-async function deleteCard (cardElement, cardId) {
-  try {
-    const deleteCard = await api.deleteCard(cardId)
-    if (deleteCard) {
-      cardElement.remove()
-      deleteCardPopup.close()
+  deleteCardPopup.open()
+  deleteCardPopup.handleDeleteConfirm(async () => {
+    try {
+      const deleteCard = await api.deleteCard(cardId)
+      if (deleteCard) {
+        cardElement.remove()
+        deleteCardPopup.close()
+      }
+    } catch (e) {
+      console.log('something went wrong..', e)
     }
-  } catch (e) {
-    console.log('something went wrong..', e)
-  }
+  })
 }
 
 async function setProfileInfo (formInfo) {
@@ -206,7 +209,11 @@ async function setProfileInfo (formInfo) {
 
     if (newUserData) {
       popupEditProfile.querySelector('.popup__submit').textContent = 'Success!'
-      userInfo.setUserInfo(newUserData.name, newUserData.about, newUserData.avatar)
+      userInfo.setUserInfo(
+        newUserData.name,
+        newUserData.about,
+        newUserData.avatar
+      )
       editProfilePopup.close()
     }
   } catch (e) {
@@ -221,7 +228,11 @@ async function submitNewPicture (avatar) {
 
     if (newProfilePictue) {
       popupEditProfilePicture.querySelector('.popup__submit').textContent = 'Success!'
-      userInfo.setUserInfo(newProfilePictue.name, newProfilePictue.about, profileImage.src = newProfilePictue.avatar)
+      userInfo.setUserInfo(
+        newProfilePictue.name,
+        newProfilePictue.about,
+        (profileImage.src = newProfilePictue.avatar)
+      )
       editProfilePicturePopup.close()
     }
   } catch (e) {
