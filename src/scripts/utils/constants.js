@@ -1,6 +1,5 @@
 //Images
 export const headerLogo = document.querySelector('.header__logo');
-export const profileImage = document.querySelector('.profile__profile-image');
 
 //Popups
 export const popupEditProfilePicture = document.querySelector('.popup_type_edit-profile-picture');
@@ -18,6 +17,7 @@ export const cardTemplate = '#element-template';
 export const placesElements = '.elements';
 export const profileName = document.querySelector('.profile__title');
 export const profileDescription = document.querySelector('.profile__description');
+export const profileImage = document.querySelector('.profile__profile-image');
 export const popupInputName = document.querySelector('.popup__input_type_name');
 export const popupInputDescription = document.querySelector('.popup__input_type_description');
 
