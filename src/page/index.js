@@ -5,12 +5,11 @@ import Section from '../scripts/components/Section'
 import Card from '../scripts/components/Cards'
 import PopupWithImage from '../scripts/components/PopupWithImage'
 import PopupWithForm from '../scripts/components/PopupWithForm'
-import PopupDeleteCard from '../scripts/components/popupDeleteCard'
+import PopupDeleteCard from '../scripts/components/PopupDeleteCard'
 import UserInfo from '../scripts/components/UserInfo'
 import FormValidator from '../scripts/components/FormValidator'
 import {
   headerLogo,
-  profileImage,
   popupEditProfile,
   popupAddCard,
   cardTemplate,
@@ -21,6 +20,7 @@ import {
   profileAddButton,
   profileName,
   profileDescription,
+  profileImage,
   popupEditProfilePicture,
   popupInputName,
   popupInputDescription
@@ -44,8 +44,7 @@ const addNewCardPopup = new PopupWithForm(
   submitNewCardForm
 )
 const deleteCardPopup = new PopupDeleteCard(
-  '.popup_type_delete-card',
-  deleteCard
+  '.popup_type_delete-card'
 )
 const imagePopup = new PopupWithImage('.popup_type_image-preview')
 const profilePictureValidator = new FormValidator(
@@ -54,7 +53,7 @@ const profilePictureValidator = new FormValidator(
 )
 const profileFormValidator = new FormValidator(formSettings, popupEditProfile)
 const cardFormValidator = new FormValidator(formSettings, popupAddCard)
-const userInfo = new UserInfo(profileName, profileDescription)
+const userInfo = new UserInfo(profileName, profileDescription, profileImage)
 
 const api = new Api({
   baseUrl: 'https://around.nomoreparties.co/v1/group-12',
@@ -80,8 +79,12 @@ async function init () {
       api.getInitialCards()
     ])
 
-    userInfo.setUserInfo(userData.name, userData.about)
-    profileImage.src = userData.avatar
+    userInfo.setUserInfo(
+      userData.name,
+      userData.about,
+      (profileImage.src = userData.avatar),
+      userData._id
+    )
 
     if (cards) {
       cardSection.render(cards)
@@ -139,7 +142,8 @@ function createCard (cardInfo) {
     imagePopup.open,
     like,
     dislike,
-    handleDeleteCard
+    handleDeleteCard,
+    userInfo
   ).render()
 }
 
@@ -151,13 +155,12 @@ async function submitNewCardForm (formInfo) {
       popupAddCard.querySelector('.popup__submit').textContent = 'Success!'
       const cardElement = createCard(card)
       cardSection.addItem(cardElement)
+      addNewCardPopup.close()
     }
   } catch (e) {
     popupAddCard.querySelector('.popup__submit').textContent = 'Failed!'
     console.log('something went wrong..', e)
   }
-
-  addNewCardPopup.close()
 }
 
 async function like (cardId) {
@@ -183,19 +186,18 @@ async function dislike (cardId) {
 }
 
 function handleDeleteCard (cardElement, cardId) {
-  deleteCardPopup.open(cardElement, cardId)
-}
-
-async function deleteCard (cardElement, cardId) {
-  try {
-    const deleteCard = await api.deleteCard(cardId)
-    if (deleteCard) {
-      cardElement.remove()
+  deleteCardPopup.open()
+  deleteCardPopup.handleDeleteConfirm(async () => {
+    try {
+      const deleteCard = await api.deleteCard(cardId)
+      if (deleteCard) {
+        cardElement.remove()
+        deleteCardPopup.close()
+      }
+    } catch (e) {
+      console.log('something went wrong..', e)
     }
-  } catch (e) {
-    console.log('something went wrong..', e)
-  }
-  deleteCardPopup.close()
+  })
 }
 
 async function setProfileInfo (formInfo) {
@@ -207,14 +209,17 @@ async function setProfileInfo (formInfo) {
 
     if (newUserData) {
       popupEditProfile.querySelector('.popup__submit').textContent = 'Success!'
-      userInfo.setUserInfo(newUserData.name, newUserData.about)
+      userInfo.setUserInfo(
+        newUserData.name,
+        newUserData.about,
+        newUserData.avatar
+      )
+      editProfilePopup.close()
     }
   } catch (e) {
     popupEditProfile.querySelector('.popup__submit').textContent = 'Failed!'
     console.log('something went wrong..', e)
   }
-
-  editProfilePopup.close()
 }
 
 async function submitNewPicture (avatar) {
@@ -222,16 +227,16 @@ async function submitNewPicture (avatar) {
     const newProfilePictue = await api.editUserPicture(avatar.avatar)
 
     if (newProfilePictue) {
-      popupEditProfilePicture.querySelector('.popup__submit').textContent =
-        'Success!'
-      const userData = await api.getUserData()
-      profileImage.src = userData.avatar
+      popupEditProfilePicture.querySelector('.popup__submit').textContent = 'Success!'
+      userInfo.setUserInfo(
+        newProfilePictue.name,
+        newProfilePictue.about,
+        (profileImage.src = newProfilePictue.avatar)
+      )
+      editProfilePicturePopup.close()
     }
   } catch (e) {
-    popupEditProfilePicture.querySelector('.popup__submit').textContent =
-      'Failed!'
+    popupEditProfilePicture.querySelector('.popup__submit').textContent = 'Failed!'
     console.log('something went wrong..', e)
   }
-
-  editProfilePicturePopup.close()
 }

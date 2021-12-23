@@ -4,109 +4,84 @@ export default class Api {
     this._token = options.token
   }
 
-  async getInitialCards() {
+  _checkResponse (response) {
+    if (response.ok) {
+      return response.json()
+    }
+    return Promise.reject(`Error ${response.status}, ${response.statusText}`)
+  }
+
+  async getInitialCards () {
     const response = await fetch(`${this._url}/cards`, {
       headers: { authorization: this._token }
     })
-
-    if (response.ok) {
-      return response.json();
-    } else {
-      console.log('Somthing went wrong initializing cards!', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
-  async getUserData() {
+  async getUserData () {
     const response = await fetch(`${this._url}/users/me`, {
-        headers: { authorization: this._token }
-      })
-  
-      if (response.ok) {
-        return response.json();
-      } else {
-        console.log('Somthing went wrong getting user data!', response.status, response.statusText);
-      }
+      headers: { authorization: this._token }
+    })
+    return this._checkResponse(response)
   }
 
-  async editUserData(name, about) {
+  async editUserData (name, about) {
     const response = await fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: { authorization: this._token, 'Content-Type': "application/json" },
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ name: name, about: about })
     })
-
-    if (response.ok) {
-      return response.json();
-    } else {
-      console.log('Somthing went wrong updating user data!', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
-  async editUserPicture(avatar) {
+  async editUserPicture (avatar) {
     const response = await fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: { authorization: this._token, 'Content-Type': "application/json" },
-      body: JSON.stringify({avatar: avatar})
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ avatar: avatar })
     })
-
-    if (response.ok) {
-      return response.json();
-    } else {
-      console.log('Somthing went wrong updating user data!', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
-  async addCard(name, link) {
+  async addCard (name, link) {
     const response = await fetch(`${this._url}/cards`, {
-        method: 'POST',
-        headers: { authorization: this._token, 'Content-Type': "application/json" },
-        body: JSON.stringify({ name: name, link: link })
-      })
-
-      if (response.ok) {
-        return response.json();
-      } else {
-        console.log('Somthing went wrong adding card!', response.status, response.statusText);
-      }
+      method: 'POST',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name: name, link: link })
+    })
+    return this._checkResponse(response)
   }
 
-  async deleteCard(cardId) {
+  async deleteCard (cardId) {
     const response = await fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: { authorization: this._token, },
+      headers: { authorization: this._token }
     })
-
-    if (response.ok) {
-      return response.json();
-    } else {
-      console.log('Somthing went wrong deleting card!', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
-  async likeCard(cardId) {
+  async likeCard (cardId) {
     const response = await fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'PUT',
-      headers: { authorization: this._token, },
+      headers: { authorization: this._token }
     })
-
-    if (response.ok) {
-      return response.json();
-    } else {
-      console.log('Somthing went wrong deleting card!', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
-  async dislikeCard(cardId) {
+  async dislikeCard (cardId) {
     const response = await fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'DELETE',
-      headers: { authorization: this._token, },
+      headers: { authorization: this._token }
     })
-
-    if (response.ok) {
-      return response.json();
-    } else {
-      console.log('Somthing went wrong deleting card!', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
-
 }
