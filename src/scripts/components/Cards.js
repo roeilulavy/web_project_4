@@ -5,13 +5,15 @@ export default class Card {
     onImageClick,
     like,
     dislike,
-    handleDeleteCard
+    handleDeleteCard,
+    userId
   ) {
     this._name = cardData.name
     this._link = cardData.link
     this._likes = cardData.likes
     this._cardId = cardData._id
     this._cardOwnerId = cardData.owner._id
+    this._userId = userId._id
 
     this._cardSelector = cardSelector
 
@@ -34,19 +36,15 @@ export default class Card {
 
   _getUserLikeStatus () {
     this._likes.forEach(like => {
-      if (like._id === 'c40535048edb0d2d4f870c06') {
-        this._element
-          .querySelector('.elements__like-button')
-          .classList.add(`elements__like-button_active`)
+      if (like._id === this._userId) {
+        this._element.querySelector('.elements__like-button').classList.add(`elements__like-button_active`)
       }
     })
   }
 
   _getLikeCount (likes) {
     const likesCount = likes.length
-    this._element.querySelector(
-      '.elements__like-counter'
-    ).textContent = likesCount
+    this._element.querySelector('.elements__like-counter').textContent = likesCount
   }
 
   _handlePreviewPicture () {
@@ -61,11 +59,9 @@ export default class Card {
     cardImage.src = this._link
     cardImage.alt = this._name
     this._element.querySelector('.elements__caption').textContent = this._name
-    this._element.querySelector(
-      '.elements__like-counter'
-    ).textContent = this._likes.length
+    this._element.querySelector('.elements__like-counter').textContent = this._likes.length
 
-    if (this._cardOwnerId !== 'c40535048edb0d2d4f870c06') {
+    if (this._cardOwnerId !== this._userId) {
       deleteButton.style.display = 'none'
     }
 
@@ -73,18 +69,22 @@ export default class Card {
 
     likeButton.addEventListener('click', async evt => {
       evt.preventDefault()
-      if (!likeButton.classList.contains(`elements__like-button_active`)) {
-        const like = await this._like(this._cardId)
-        if (like) {
-          evt.target.classList.add(`elements__like-button_active`)
-          this._getLikeCount(like)
+      try {
+        if (!likeButton.classList.contains(`elements__like-button_active`)) {
+          const like = await this._like(this._cardId)
+          if (like) {
+            evt.target.classList.add(`elements__like-button_active`)
+            this._getLikeCount(like)
+          }
+        } else {
+          const dislike = await this._dislike(this._cardId)
+          if (dislike) {
+            evt.target.classList.remove(`elements__like-button_active`)
+            this._getLikeCount(dislike)
+          }
         }
-      } else {
-        const dislike = await this._dislike(this._cardId)
-        if (dislike) {
-          evt.target.classList.remove(`elements__like-button_active`)
-          this._getLikeCount(dislike)
-        }
+      } catch (e) {
+        return Promise.reject(`Error ${e.status}, ${e.statusText}`)
       }
     })
 

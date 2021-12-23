@@ -9,14 +9,16 @@ export default class UserInfo {
     const getUserData = {
       name: this._name.textContent,
       description: this._description.textContent,
-      avatar: this._avatar
+      avatar: this._avatar,
+      id: this._id
     }
     return getUserData
   }
 
-  setUserInfo (name, description, avatar) {
+  setUserInfo (name, description, avatar, id) {
     this._name.textContent = name
     this._description.textContent = description
     this._avatar.src = avatar
+    this._id = id
   }
 }

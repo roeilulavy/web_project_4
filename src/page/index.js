@@ -80,7 +80,7 @@ async function init () {
       api.getInitialCards()
     ])
 
-    userInfo.setUserInfo(userData.name, userData.about, profileImage.src = userData.avatar)
+    userInfo.setUserInfo(userData.name, userData.about, profileImage.src = userData.avatar, userData._id)
     
     if (cards) {
       cardSection.render(cards)
@@ -138,7 +138,8 @@ function createCard (cardInfo) {
     imagePopup.open,
     like,
     dislike,
-    handleDeleteCard
+    handleDeleteCard,
+    userInfo
   ).render()
 }
 
