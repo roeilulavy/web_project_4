@@ -19,6 +19,8 @@ export default class UserInfo {
     this._name.textContent = name
     this._description.textContent = description
     this._avatar.src = avatar
-    this._id = id
+    if (id) {
+      this._id = id
+    }
   }
 }
