@@ -82,7 +82,7 @@ async function init () {
     userInfo.setUserInfo(
       userData.name,
       userData.about,
-      (profileImage.src = userData.avatar),
+      userData.avatar,
       userData._id
     )
 
@@ -224,15 +224,16 @@ async function setProfileInfo (formInfo) {
 
 async function submitNewPicture (avatar) {
   try {
-    const newProfilePictue = await api.editUserPicture(avatar.avatar)
+    const userData = await api.editUserPicture(avatar.avatar)
 
-    if (newProfilePictue) {
+    if (userData) {
       popupEditProfilePicture.querySelector('.popup__submit').textContent = 'Success!'
       userInfo.setUserInfo(
-        newProfilePictue.name,
-        newProfilePictue.about,
-        (profileImage.src = newProfilePictue.avatar)
+        userData.name,
+        userData.about,
+        userData.avatar
       )
+      getProfileInfo()
       editProfilePicturePopup.close()
     }
   } catch (e) {
